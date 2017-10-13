@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour {
 
-    public Exit entrance;
+    public Room goesTo;
 
 	// Use this for initialization
 	void Start () {
