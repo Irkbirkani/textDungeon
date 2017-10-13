@@ -2,9 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Room : MonoBehaviour {
-
-    public Exit[] exits;
+public class PlayerMovement : MonoBehaviour {
 
 	// Use this for initialization
 	void Start () {
@@ -14,5 +12,9 @@ public class Room : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		
+	}
+
+	public void moveToExit(Transform exit){
+		Vector2 pos = GetComponent<Transform> ().position;
 	}
 }
