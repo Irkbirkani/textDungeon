@@ -14,7 +14,8 @@ public class PlayerMovement : MonoBehaviour {
 		
 	}
 
-	public void moveToExit(Transform exit){
-		Vector2 pos = GetComponent<Transform> ().position;
+	public void moveTo(Transform newPos){
+		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
+		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
 	}
 }

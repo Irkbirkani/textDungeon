@@ -58,6 +58,8 @@
      <Compile Include="Assets\Scripts\Room\Item.cs" />
      <Compile Include="Assets\Scripts\Room\Room.cs" />
      <Compile Include="Assets\Scripts\Utility\InitialSetup.cs" />
+     <Compile Include="Assets\Scripts\Utility\PlayerCommands.cs" />
+     <Compile Include="Assets\Scripts\Utility\ProcessInput.cs" />
      <Compile Include="Assets\Scripts\Utility\UpdateChatText.cs" />
  <Reference Include="UnityEngine.UI">
  <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>

@@ -16,4 +16,12 @@ public class Room : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void CheckExit(string exit){
+		for (int i = 0; i <= exits.Length - 1; i++) {
+			if (exits [i].name.ToLower () == exit.ToLower ()) {
+				GameObject.Find ("Player").GetComponent<PlayerMovement> ().moveTo (exits [i].transform);
+			}
+		}
+	}
 }

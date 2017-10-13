@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Exit : MonoBehaviour {
 
+	public string name;
     public Room goesTo;
 
 	// Use this for initialization
@@ -13,6 +14,10 @@ public class Exit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		
+	}
+
+	void OnTriggerEnter2D(Collider2D other){
 		
 	}
 }

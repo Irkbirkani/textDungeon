@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class InitialSetup : MonoBehaviour {
     public InputField input;
+	public Room startRoom;
 	
     void Start()
     {
@@ -13,5 +14,6 @@ public class InitialSetup : MonoBehaviour {
         Cursor.lockState = CursorLockMode.Locked;
         input.Select();
         input.ActivateInputField();
+		GameObject.Find ("Player").GetComponent<Player> ().SetLocation (startRoom);
     }
 }

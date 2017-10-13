@@ -21,7 +21,8 @@ public class UpdateChatText : MonoBehaviour {
         if (input.text.Length > 0)
         {
             ChatText = ChatText + "   " + input.text + "\n";
-            input.text = "";
+			input.GetComponentInParent<ProcessInput> ().processInput (input.text);           
+			input.text = "";
             input.ActivateInputField();
             scroll.verticalNormalizedPosition = 0f;
         }

@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour {
 
     private string _Name = "";
+	private Room location;
     private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1; 
 
 	// Use this for initialization
@@ -41,4 +42,11 @@ public class Player : MonoBehaviour {
     {
         return _Level;
     }
+	public Room Location(){
+		return location;
+	}
+
+	public void SetLocation(Room newLoc){
+		location = newLoc;
+	}
 }
