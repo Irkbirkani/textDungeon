@@ -5,53 +5,25 @@ using UnityEngine;
 
 public class UpdateChatText : MonoBehaviour {
 
-    public Text[] OutputText;
+    public Text OutputText;
     public InputField input;
+    public ScrollRect scroll;
 
-    private string[] ChatText;
-    private bool wasFocused;
-
-    // Use this for initialization
-    void Start() {
-        ChatText = new string[9] { "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n", "\n" };
-    }
+    private string ChatText;
 
     // Update is called once per frame
     void Update() {
-        
-        if (input.isFocused)
-        {
-            printChatText();
-        }
-        wasFocused = input.isFocused;
+        OutputText.text = ChatText;
     }
 
 
     public void UpdateText() {
-        updateChatText(input.text + "\n");
-        input.text = "";
-        input.ActivateInputField();
-    }
-
-    void updateChatText(string newText)
-    {
-        if (newText != "")
+        if (input.text.Length > 0)
         {
-            for (int i = 0; i <= ChatText.Length - 2; i++)
-            {
-                ChatText[i] = ChatText[i + 1];
-            }
-            ChatText[ChatText.Length - 1] = newText;
+            ChatText = ChatText + "   " + input.text + "\n";
+            input.text = "";
+            input.ActivateInputField();
+            scroll.verticalNormalizedPosition = 0f;
         }
-    }
-
-	 void printChatText () {
-        for (int i = 0; i <= ChatText.Length-1; i++)
-            OutputText[i].text = ChatText[i];
-	}
-
-    void OnMouseDown()
-    {
-        
     }
 }
