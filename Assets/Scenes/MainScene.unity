@@ -1016,10 +1016,9 @@ GameObject:
   - component: {fileID: 395441961}
   - component: {fileID: 395441960}
   - component: {fileID: 395441959}
-  - component: {fileID: 395441963}
   m_Layer: 0
   m_Name: South
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1117,23 +1116,6 @@ Transform:
   m_Father: {fileID: 1647403996}
   m_RootOrder: 28
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &395441963
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 395441958}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: -0.00000011920929}
-  - {x: 0.5, y: -0.00000011920929}
 --- !u!1 &397093891
 GameObject:
   m_ObjectHideFlags: 0
@@ -1145,10 +1127,9 @@ GameObject:
   - component: {fileID: 397093894}
   - component: {fileID: 397093893}
   - component: {fileID: 397093892}
-  - component: {fileID: 397093896}
   m_Layer: 0
   m_Name: West
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1246,23 +1227,6 @@ Transform:
   m_Father: {fileID: 1647403996}
   m_RootOrder: 27
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &397093896
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 397093891}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: 0.00089097023, y: -0.78677684}
-  - {x: 0.008559227, y: 0.5741349}
 --- !u!1 &480907213
 GameObject:
   m_ObjectHideFlags: 0
@@ -1874,10 +1838,9 @@ GameObject:
   - component: {fileID: 581212146}
   - component: {fileID: 581212145}
   - component: {fileID: 581212144}
-  - component: {fileID: 581212148}
   m_Layer: 0
   m_Name: East
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1975,23 +1938,6 @@ Transform:
   m_Father: {fileID: 1647403996}
   m_RootOrder: 25
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &581212148
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 581212143}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.0021026134, y: 0.5433288}
-  - {x: 0.0012876987, y: -0.5958891}
 --- !u!1 &601137535
 GameObject:
   m_ObjectHideFlags: 0
@@ -2877,6 +2823,7 @@ GameObject:
   - component: {fileID: 863911183}
   - component: {fileID: 863911185}
   - component: {fileID: 863911184}
+  - component: {fileID: 863911186}
   m_Layer: 5
   m_Name: RoomStatPanel
   m_TagString: Untagged
@@ -2938,6 +2885,18 @@ CanvasRenderer:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 863911182}
+--- !u!114 &863911186
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 863911182}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fa4d1b09a7186d64cb63d453770a0727, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  room: {fileID: 1647403995}
 --- !u!1 &918025585
 GameObject:
   m_ObjectHideFlags: 0
@@ -3196,6 +3155,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1569970ef1c2f94aa0061ab70cb3463, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  moving: 0
+  newPos: {fileID: 0}
 --- !u!1 &942890199
 GameObject:
   m_ObjectHideFlags: 0
@@ -3513,6 +3474,8 @@ MonoBehaviour:
   - {fileID: 1884142478}
   - {fileID: 1607450600}
   items: []
+  location: World
+  Name: Place
 --- !u!4 &997514071
 Transform:
   m_ObjectHideFlags: 0
@@ -3856,7 +3819,7 @@ GameObject:
   - component: {fileID: 1135823092}
   m_Layer: 0
   m_Name: North
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4124,10 +4087,9 @@ GameObject:
   - component: {fileID: 1273107197}
   - component: {fileID: 1273107196}
   - component: {fileID: 1273107195}
-  - component: {fileID: 1273107199}
   m_Layer: 0
   m_Name: North
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4225,23 +4187,6 @@ Transform:
   m_Father: {fileID: 1647403996}
   m_RootOrder: 26
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!68 &1273107199
-EdgeCollider2D:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1273107194}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_EdgeRadius: 0
-  m_Points:
-  - {x: -0.5, y: 0}
-  - {x: 0.5, y: 0}
 --- !u!1 &1282270807
 GameObject:
   m_ObjectHideFlags: 0
@@ -5171,7 +5116,7 @@ GameObject:
   - component: {fileID: 1577098660}
   m_Layer: 0
   m_Name: East
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5300,7 +5245,7 @@ GameObject:
   - component: {fileID: 1607450601}
   m_Layer: 0
   m_Name: South
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -5656,11 +5601,13 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exits:
-  - {fileID: 581212144}
   - {fileID: 1273107195}
+  - {fileID: 581212144}
   - {fileID: 397093892}
   - {fileID: 395441959}
   items: []
+  location: World
+  Name: Place
 --- !u!4 &1647403996
 Transform:
   m_ObjectHideFlags: 0
@@ -6455,7 +6402,7 @@ GameObject:
   - component: {fileID: 1884142479}
   m_Layer: 0
   m_Name: West
-  m_TagString: Untagged
+  m_TagString: Exit
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0

@@ -6,6 +6,7 @@ public class Room : MonoBehaviour {
 
     public Exit[] exits;
 	public Item[] items;
+    public string location = "World", Name = "Place";
 
 	// Use this for initialization
 	void Start () {
@@ -20,8 +21,10 @@ public class Room : MonoBehaviour {
 	public void CheckExit(string exit){
 		for (int i = 0; i <= exits.Length - 1; i++) {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
-				GameObject.Find ("Player").GetComponent<PlayerMovement> ().moveTo (exits [i].transform);
-			}
+                GameObject.Find("Player").GetComponent<PlayerMovement>().moving = true;
+                GameObject.Find("Player").GetComponent<PlayerMovement>().newPos = exits[i].transform;
+
+            }
 		}
 	}
 }
