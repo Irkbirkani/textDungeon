@@ -5,7 +5,7 @@ using UnityEngine;
 public class Exit : MonoBehaviour {
 
 	public string name;
-    public Room goesTo;
+    public Exit goesTo;
 
 	// Use this for initialization
 	void Start () {
@@ -16,8 +16,11 @@ public class Exit : MonoBehaviour {
 	void Update () {
 		
 	}
-
-	void OnTriggerEnter2D(Collider2D other){
-		
+	public Transform GetNewRoom(){
+		return goesTo.transform.parent.transform;
 	}
+	public GameObject GetParent(){
+		return transform.parent.gameObject;
+	}
+
 }

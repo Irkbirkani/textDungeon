@@ -47,6 +47,22 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetLocation(Room newLoc){
+		if (location != null) {
+			location.gameObject.SetActive (false);
+			location.DeactivateChildren ();
+		}
+		newLoc.gameObject.SetActive (true);
+		newLoc.ActivateChildren ();
 		location = newLoc;
+	}
+	void OnTriggerEnter2D(Collider2D other){
+		if (other.tag == "Exit") {
+			//GetComponent<PlayerMovement> ().moving = true;
+			//GetComponent<PlayerMovement> ().newPos.position = other.gameObject.GetComponent<Exit> ().GetNewRoom ().position;
+
+			SetLocation (other.gameObject.GetComponent<Exit> ().GetParent ().GetComponent<Room> ());
+			//transform.position = other.gameObject.GetComponent<Exit> ().goesTo.transform.position;
+
+		}	
 	}
 }

@@ -10,8 +10,8 @@ public class InitialSetup : MonoBehaviour {
 	
     void Start()
     {
-        Cursor.visible = false;
-        Cursor.lockState = CursorLockMode.Locked;
+        //Cursor.visible = false;
+        //Cursor.lockState = CursorLockMode.Locked;
         input.Select();
         input.ActivateInputField();
 		GameObject.Find ("Player").GetComponent<Player> ().SetLocation (startRoom);

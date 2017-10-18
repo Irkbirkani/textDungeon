@@ -23,8 +23,19 @@ public class Room : MonoBehaviour {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
                 GameObject.Find("Player").GetComponent<PlayerMovement>().moving = true;
                 GameObject.Find("Player").GetComponent<PlayerMovement>().newPos = exits[i].transform;
-
             }
+		}
+	}
+
+	public void DeactivateChildren(){
+		for (int i = 0; i < gameObject.transform.childCount; i++) {
+			gameObject.transform.GetChild (i).gameObject.SetActive (false);
+		}
+	}
+
+	public void ActivateChildren() {
+		for (int i = 0; i < gameObject.transform.childCount; i++) {
+			gameObject.transform.GetChild (i).gameObject.SetActive (true);
 		}
 	}
 }

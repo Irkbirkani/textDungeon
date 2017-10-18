@@ -20,9 +20,9 @@ public class UpdateRoomStats : MonoBehaviour {
 	void Update () {
         locationText.text = "Location: " + room.location;
         nameText.text     = "Name: " + room.Name;
-        exitsText.text = "Exits: \n    North: " + room.exits[0].goesTo.Name +
-            "\n    East: " + room.exits[1].goesTo.Name +
-            "\n    South: " + room.exits[2].goesTo.Name +
-            "\n    West: " + room.exits[3].goesTo.Name;
+		exitsText.text = "Exits: \n    North: " + room.exits[0].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
+			"\n    East: " + room.exits[1].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
+			"\n    South: " + room.exits[2].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
+			"\n    West: " + room.exits[3].goesTo.transform.parent.gameObject.GetComponent<Room>().Name;
 	}
 }
