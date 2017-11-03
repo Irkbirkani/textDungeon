@@ -5,9 +5,10 @@ using UnityEngine;
 
 public class UpdateRoomStats : MonoBehaviour {
 
-    public Room room;
+    public Player player;
 
-    private Text locationText, nameText, exitsText;
+	private Text locationText, nameText, exitsText;
+	private Room room;
 
 	// Use this for initialization
 	void Start () {
@@ -18,11 +19,16 @@ public class UpdateRoomStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
+		room = player.Location();
         locationText.text = "Location: " + room.location;
         nameText.text     = "Name: " + room.Name;
-		exitsText.text = "Exits: \n    North: " + room.exits[0].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
-			"\n    East: " + room.exits[1].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
-			"\n    South: " + room.exits[2].goesTo.transform.parent.gameObject.GetComponent<Room>().Name +
-			"\n    West: " + room.exits[3].goesTo.transform.parent.gameObject.GetComponent<Room>().Name;
+		exitsText.text = PrintExits (room);
+	}
+
+	string PrintExits(Room room) {
+		string ret = "Exits: \n";
+		for (int i = 0; i < room.exits.Length; i++)
+			ret = ret + room.exits [i].name + ": " + room.exits [i].goesTo.transform.parent.gameObject.GetComponent<Room> ().Name + "\n";
+		return ret;
 	}
 }

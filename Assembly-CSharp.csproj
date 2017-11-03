@@ -51,9 +51,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-     <Compile Include="Assets\Scripts\Player\Player.cs" />
-     <Compile Include="Assets\Scripts\Player\PlayerMovement.cs" />
-     <Compile Include="Assets\Scripts\Player\UpdatePlayerStats.cs" />
+     <Compile Include="Assets\Scripts\Entities\Entity.cs" />
+     <Compile Include="Assets\Scripts\Entities\Movement.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\Player.cs" />
+     <Compile Include="Assets\Scripts\Entities\Player\UpdatePlayerStats.cs" />
      <Compile Include="Assets\Scripts\Room\Exit.cs" />
      <Compile Include="Assets\Scripts\Room\Item.cs" />
      <Compile Include="Assets\Scripts\Room\Room.cs" />

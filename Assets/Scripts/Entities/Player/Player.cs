@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class Player : MonoBehaviour {
 
-    private string _Name = "";
+    private string _Name = "You";
 	private Room location;
     private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1; 
-
+	private bool exiting = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -47,22 +47,19 @@ public class Player : MonoBehaviour {
 	}
 
 	public void SetLocation(Room newLoc){
-		if (location != null) {
-			location.gameObject.SetActive (false);
-			location.DeactivateChildren ();
-		}
-		newLoc.gameObject.SetActive (true);
-		newLoc.ActivateChildren ();
+		if(location != null)
+			location.transform.position = new Vector2 (0, 200);
+		newLoc.transform.position = new Vector2 (0, 2);
 		location = newLoc;
 	}
 	void OnTriggerEnter2D(Collider2D other){
 		if (other.tag == "Exit") {
-			//GetComponent<PlayerMovement> ().moving = true;
-			//GetComponent<PlayerMovement> ().newPos.position = other.gameObject.GetComponent<Exit> ().GetNewRoom ().position;
-
-			SetLocation (other.gameObject.GetComponent<Exit> ().GetParent ().GetComponent<Room> ());
-			//transform.position = other.gameObject.GetComponent<Exit> ().goesTo.transform.position;
-
+			exiting = !exiting;
+				if (exiting) {
+				SetLocation (other.gameObject.GetComponent<Exit> ().goesTo.GetParent ().GetComponent<Room> ());
+				transform.position = other.gameObject.GetComponent<Exit> ().goesTo.transform.position;
+				GetComponent<Movement> ().newPos = location.transform;
+			}
 		}	
 	}
 }

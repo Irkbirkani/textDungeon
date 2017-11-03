@@ -20,11 +20,15 @@ public class UpdateChatText : MonoBehaviour {
     public void UpdateText() {
         if (input.text.Length > 0)
         {
-            ChatText = ChatText + "   " + input.text + "\n";
+            ChatText = ChatText + "   > " + input.text + "\n";
 			input.GetComponentInParent<ProcessInput> ().processInput (input.text);           
 			input.text = "";
             input.ActivateInputField();
             scroll.verticalNormalizedPosition = 0f;
         }
     }
+
+	public void UpdateChat(string str){
+		ChatText = ChatText + "   " + str + "\n";
+	}
 }
