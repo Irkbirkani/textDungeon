@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpdateRoomStats : MonoBehaviour {
 
-    public Player player;
+    public Entity player;
 
 	private Text locationText, nameText, exitsText;
 	private Room room;

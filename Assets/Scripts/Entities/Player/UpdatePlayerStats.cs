@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class UpdatePlayerStats : MonoBehaviour {
 
-    public Player player;
+    public Entity player;
 
     private Text nameText, hlthText, manaText, lvlText, stamText;
 

@@ -8,6 +8,7 @@ public class Player : MonoBehaviour {
 	private Room location;
     private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1; 
 	private bool exiting = false;
+    private bool isPlayer = false;
 	// Use this for initialization
 	void Start () {
 		
@@ -45,6 +46,16 @@ public class Player : MonoBehaviour {
 	public Room Location(){
 		return location;
 	}
+
+    public void setIsPlayer(bool pl)
+    {
+        isPlayer = pl;
+    }
+
+    public bool IsPlayer()
+    {
+        return isPlayer;
+    }
 
 	public void SetLocation(Room newLoc){
 		if(location != null)
