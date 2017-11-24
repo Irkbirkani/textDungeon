@@ -14,6 +14,6 @@ public class InitialSetup : MonoBehaviour {
         //Cursor.lockState = CursorLockMode.Locked;
         input.Select();
         input.ActivateInputField();
-		GameObject.Find ("Player").GetComponent<Player> ().SetLocation (startRoom);
+		GameObject.Find ("Player").GetComponent<Entity> ().SetLocation (startRoom);
     }
 }

@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class ProcessInput : MonoBehaviour {
 
-	public Player player;
+	public Entity player;
 	public InputField input;
 
 	// Use this for initialization
