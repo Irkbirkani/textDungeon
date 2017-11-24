@@ -12,8 +12,13 @@ public class InitialSetup : MonoBehaviour {
     {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
+
         input.Select();
         input.ActivateInputField();
-		GameObject.Find ("Player").GetComponent<Entity> ().SetLocation (startRoom);
+
+        startRoom.AddEntity(GameObject.Find("Player").GetComponent<Entity>());
+
+        GameObject.Find ("Player").GetComponent<Entity>().SetLocation(startRoom);
+        GameObject.Find("Player").GetComponent<Entity>().SetPlayer();
     }
 }

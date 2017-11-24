@@ -6,7 +6,8 @@ using UnityEngine;
 public class Room : MonoBehaviour {
 
     public Exit[] exits;
-	public Item[] items;
+	public List<Item> items = new List<Item>();
+    public List<Entity> ents = new List<Entity>();
     public string location = "World", Name = "Place";
 
 	// Use this for initialization
@@ -18,6 +19,21 @@ public class Room : MonoBehaviour {
 	void Update () {
 		
 	}
+    
+    public void AddEntity(Entity ent)
+    {
+        ents.Add(ent);
+        ent.transform.parent = transform;
+        foreach (Entity e in ents)
+        {
+            Debug.Log(e.Name);
+        }
+    }
+
+    public void RemoveEntity(Entity ent)
+    {
+        ents.Remove(ent);
+    }
 
 	public void CheckExit(string exit){
 		bool good = false;

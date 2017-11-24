@@ -20,7 +20,7 @@ public class UpdatePlayerStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-        nameText.text = "Name: "    + player.Name();
+        nameText.text = "Name: "    + player.Name;
         lvlText.text  = "Level: "   + player.Level().ToString();
         hlthText.text = "Health: "  + player.Health().ToString();
         manaText.text = "  Mana: "    + player.Mana().ToString();
