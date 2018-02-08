@@ -22,11 +22,12 @@ public class Room : MonoBehaviour {
     
     public void AddEntity(Entity ent)
     {
+
         ents.Add(ent);
         ent.transform.parent = transform;
         foreach (Entity e in ents)
         {
-            Debug.Log(e.Name);
+            Debug.Log(e.Name+ " Added " + ents.Count + " to " + Name);
         }
     }
 

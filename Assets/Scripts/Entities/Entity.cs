@@ -8,7 +8,7 @@ public class Entity : MonoBehaviour {
     private Room location;
     private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1;
     private bool exiting = false;
-    private bool isPlayer = false;
+    public bool isPlayer = false;
 
     // Use this for initialization
     void Start()
@@ -75,7 +75,7 @@ public class Entity : MonoBehaviour {
             if (exiting)
             {
                 SetLocation(other.gameObject.GetComponent<Exit>().goesTo.GetParent().GetComponent<Room>());
-                other.gameObject.GetComponent<Exit>().goesTo.GetParent().GetComponent<Room>().AddEntity(this);
+                location.AddEntity(this);
                 transform.position = other.gameObject.GetComponent<Exit>().goesTo.transform.position;
                 GetComponent<Movement>().newPos = location.transform;
             }
