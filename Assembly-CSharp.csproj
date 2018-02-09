@@ -57,6 +57,7 @@
      <Compile Include="Assets\Scripts\Entities\Player\UpdatePlayerStats.cs" />
      <Compile Include="Assets\Scripts\Room\Exit.cs" />
      <Compile Include="Assets\Scripts\Room\Item.cs" />
+     <Compile Include="Assets\Scripts\Room\NPC.cs" />
      <Compile Include="Assets\Scripts\Room\Room.cs" />
      <Compile Include="Assets\Scripts\Room\UpdateRoomStats.cs" />
      <Compile Include="Assets\Scripts\Utility\InitialSetup.cs" />

@@ -5,7 +5,7 @@ using UnityEngine;
 public class Entity : MonoBehaviour {
 
     public string Name = "You";
-    private Room location;
+    public Room location;
     private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1;
     private bool exiting = false;
     public bool isPlayer = false;

@@ -868,6 +868,11 @@ Prefab:
       propertyPath: m_RootOrder
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 114718199562005556, guid: 5bd5034491aae52479e89d3545180b38,
+        type: 2}
+      propertyPath: location
+      value: 
+      objectReference: {fileID: 963433689}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 5bd5034491aae52479e89d3545180b38, type: 2}
   m_IsPrefabParent: 0
@@ -4962,6 +4967,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Name: You
+  location: {fileID: 0}
   isPlayer: 1
 --- !u!61 &920318327
 BoxCollider2D:
@@ -5198,11 +5204,6 @@ MonoBehaviour:
   items: []
   ents:
   - {fileID: 1619784695}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  numEnts: 0
   location: World
   Name: Place3
 --- !u!4 &963433690
@@ -5578,13 +5579,7 @@ MonoBehaviour:
   - {fileID: 1135823091}
   - {fileID: 1884142478}
   items: []
-  ents:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  numEnts: 0
+  ents: []
   location: World
   Name: Place2
 --- !u!4 &997514071
@@ -8786,13 +8781,7 @@ MonoBehaviour:
   - {fileID: 397093892}
   - {fileID: 395441959}
   items: []
-  ents:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  numEnts: 0
+  ents: []
   location: World
   Name: Place
 --- !u!4 &1647403996

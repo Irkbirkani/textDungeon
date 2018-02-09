@@ -6,8 +6,8 @@ using UnityEngine;
 public class Room : MonoBehaviour {
 
     public Exit[] exits;
-	public List<Item> items = new List<Item>();
-    public List<Entity> ents = new List<Entity>();
+	public List<Item> items;
+	public List<Entity> ents = new List<Entity>();
     public string location = "World", Name = "Place";
 
 	// Use this for initialization
@@ -22,14 +22,23 @@ public class Room : MonoBehaviour {
     
     public void AddEntity(Entity ent)
     {
-
         ents.Add(ent);
         ent.transform.parent = transform;
         foreach (Entity e in ents)
         {
-            Debug.Log(e.Name+ " Added " + ents.Count + " to " + Name);
+            Debug.Log(e.Name+ " Added to " + Name);
         }
     }
+
+	public Entity GetPlayer() {
+		Entity pl = null;
+		foreach (Entity e in ents) {
+			if (e.isPlayer) {
+				pl = e;
+			}
+		}
+		return pl;
+	}
 
     public void RemoveEntity(Entity ent)
     {
@@ -40,8 +49,8 @@ public class Room : MonoBehaviour {
 		bool good = false;
 		for (int i = 0; i <= exits.Length - 1; i++) {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
-				GameObject.Find ("Player").GetComponent<Movement> ().moving = true;
-				GameObject.Find ("Player").GetComponent<Movement> ().newPos = exits [i].transform;
+				var pl = GetPlayer ();
+				GameObject.Find("Player").GetComponent<Movement> ().SetMove(true, exits [i].transform);
 				good = true;
 			}
 		}

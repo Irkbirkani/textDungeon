@@ -36,4 +36,8 @@ public class Movement : MonoBehaviour {
 		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
         GetComponent<Entity>().Location().RemoveEntity(GetComponent<Entity>());
 	}
+	public void SetMove(bool mv, Transform np){
+		moving = mv;
+		newPos = np;
+	}
 }

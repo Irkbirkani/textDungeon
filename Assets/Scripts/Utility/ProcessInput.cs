@@ -19,8 +19,10 @@ public class ProcessInput : MonoBehaviour {
 	}
 
 	public void processInput(string input){
-		if (input == PlayerCommands.ExitEast)
+		if (input == PlayerCommands.ExitEast) {
 			player.Location ().CheckExit ("east");
+
+		}
 		if (input == PlayerCommands.ExitNorth)
 			player.Location ().CheckExit ("north");
 		if (input == PlayerCommands.ExitSouth)
