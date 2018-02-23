@@ -3253,10 +3253,10 @@ RectTransform:
   m_Father: {fileID: 1497112323}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0.5, y: 0.637}
-  m_AnchorMax: {x: 1, y: 0.758}
-  m_AnchoredPosition: {x: 0, y: -0.099998474}
-  m_SizeDelta: {x: -0.5, y: 0.099998474}
+  m_AnchorMin: {x: 0, y: 0.5294543}
+  m_AnchorMax: {x: 1, y: 0.637}
+  m_AnchoredPosition: {x: 0, y: -2}
+  m_SizeDelta: {x: -2.5299988, y: 4.0999985}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &666888571
 MonoBehaviour:
@@ -4276,10 +4276,10 @@ RectTransform:
   m_Father: {fileID: 1497112323}
   m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0.5151066}
-  m_AnchorMax: {x: 1, y: 0.634}
-  m_AnchoredPosition: {x: -0.24801636, y: 0.20000076}
-  m_SizeDelta: {x: 0, y: 0.1000061}
+  m_AnchorMin: {x: 0, y: 0.39569718}
+  m_AnchorMax: {x: 0.95000005, y: 0.5}
+  m_AnchoredPosition: {x: 4.7519836, y: 1}
+  m_SizeDelta: {x: 10, y: 4.100006}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &824225406
 MonoBehaviour:
@@ -4890,6 +4890,7 @@ GameObject:
   - component: {fileID: 920318328}
   - component: {fileID: 920318329}
   - component: {fileID: 920318326}
+  - component: {fileID: 920318330}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -5030,6 +5031,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moving: 0
   newPos: {fileID: 0}
+--- !u!114 &920318330
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 920318323}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: baf58b585388f514190f8d226edbb534, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  delay: 2
 --- !u!1 &942890199
 GameObject:
   m_ObjectHideFlags: 0
@@ -5207,6 +5220,7 @@ MonoBehaviour:
   location: World
   Name: Place3
   startLoc: {x: 0, y: 3000}
+  distance: 10
 --- !u!4 &963433690
 Transform:
   m_ObjectHideFlags: 0
@@ -5584,6 +5598,7 @@ MonoBehaviour:
   location: World
   Name: Place2
   startLoc: {x: 0, y: 2000}
+  distance: 10
 --- !u!4 &997514071
 Transform:
   m_ObjectHideFlags: 0
@@ -8787,6 +8802,7 @@ MonoBehaviour:
   location: World
   Name: Place
   startLoc: {x: 0, y: 1000}
+  distance: 10
 --- !u!4 &1647403996
 Transform:
   m_ObjectHideFlags: 0

@@ -10,6 +10,7 @@ public class Room : MonoBehaviour {
 	public List<Entity> ents = new List<Entity>();
     public string location = "World", Name = "Place";
 	public Vector2 startLoc;
+    public int distance = 10;
 
 	// Use this for initialization
 	void Start () {
@@ -22,7 +23,17 @@ public class Room : MonoBehaviour {
 	}
 
 	public void CheckAttack(string tgt) {
-		
+		foreach(Entity e in ents)
+        {
+            if (e.Name.ToLower().Equals(tgt.ToLower()))
+            {
+                Entity pl = GetPlayer();
+                while (Mathf.Abs((pl.transform.position - e.transform.position).magnitude) > 1)
+                {
+                    
+                }
+            }
+        }
 	}
     
     public void AddEntity(Entity ent)
@@ -52,6 +63,7 @@ public class Room : MonoBehaviour {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
 				var pl = GetPlayer ();
 				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform);
+                pl.SetStamina(-distance);
 				good = true;
 			}
 		}

@@ -23,7 +23,7 @@ public class UpdatePlayerStats : MonoBehaviour {
         nameText.text = "Name: "    + player.Name;
         lvlText.text  = "Level: "   + player.Level().ToString();
         hlthText.text = "Health: "  + player.Health().ToString();
-        manaText.text = "  Mana: "    + player.Mana().ToString();
+        manaText.text = "Mana: "  + player.Mana().ToString();
         stamText.text = "Stamina: " + player.Stamina().ToString();
     }
 }

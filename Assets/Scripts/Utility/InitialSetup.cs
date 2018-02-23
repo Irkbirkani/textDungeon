@@ -19,6 +19,5 @@ public class InitialSetup : MonoBehaviour {
         startRoom.AddEntity(GameObject.Find("Player").GetComponent<Entity>());
 
         GameObject.Find ("Player").GetComponent<Entity>().SetLocation(startRoom);
-        GameObject.Find("Player").GetComponent<Entity>().SetPlayer();
     }
 }
