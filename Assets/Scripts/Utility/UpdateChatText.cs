@@ -24,7 +24,7 @@ public class UpdateChatText : MonoBehaviour {
 			input.GetComponentInParent<ProcessInput> ().processInput (input.text);           
 			input.text = "";
             input.ActivateInputField();
-            scroll.verticalNormalizedPosition = 0f;
+			scroll.gameObject.transform.Find ("Scrollbar Vertical").gameObject.GetComponent<Scrollbar> ().value = 0f;
         }
     }
 

@@ -28,10 +28,7 @@ public class Room : MonoBehaviour {
             if (e.Name.ToLower().Equals(tgt.ToLower()))
             {
                 Entity pl = GetPlayer();
-                while (Mathf.Abs((pl.transform.position - e.transform.position).magnitude) > 1)
-                {
-                    
-                }
+				pl.GetComponent<Movement> ().SetMove (true, e.transform, 1.0f);
             }
         }
 	}
@@ -62,7 +59,7 @@ public class Room : MonoBehaviour {
 		for (int i = 0; i <= exits.Length - 1; i++) {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
 				var pl = GetPlayer ();
-				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform);
+				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform, 0.01f);
                 pl.SetStamina(-distance);
 				good = true;
 			}
@@ -70,8 +67,9 @@ public class Room : MonoBehaviour {
 		if (!good) {
 			GameObject chat = GameObject.Find ("PlayerControl").gameObject;
 			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (0, 0, 1);
-			chat.GetComponent<UpdateChatText> ().UpdateChat ("<color=#00ffffff>>" + Name + ": Can't go that way!</color>");
+			chat.GetComponent<UpdateChatText> ().UpdateChat ("<color=#00ffffff>>"+ " " + Name + ": Can't go that way!</color>");
 			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (1, 1, 1);
+			chat.transform.Find ("ScrollView").gameObject.GetComponent<ScrollRect> ().gameObject.transform.Find ("Scrollbar Vertical").gameObject.GetComponent<Scrollbar> ().value = 0.0f;
 		}
 	}
 }

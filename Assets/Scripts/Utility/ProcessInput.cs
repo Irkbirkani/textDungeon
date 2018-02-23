@@ -8,9 +8,11 @@ public class ProcessInput : MonoBehaviour {
 	public Entity player;
 	public InputField input;
 
+	private GameObject chat;
+
 	// Use this for initialization
 	void Start () {
-		
+		chat = GameObject.Find ("PlayerControl").gameObject;
 	}
 	
 	// Update is called once per frame
@@ -19,16 +21,23 @@ public class ProcessInput : MonoBehaviour {
 	}
 
 	public void processInput(string input){
+		var moving = player.GetComponent<Movement>().moving;
 		var inp = input.Split (' ');
-		if (inp[0] == PlayerCommands.ExitEast)
+		if (inp [0] == PlayerCommands.ExitEast && !moving)
 			player.Location ().CheckExit ("east");
-		if (inp[0] == PlayerCommands.ExitNorth)
+		else if (inp [0] == PlayerCommands.ExitNorth && !moving)
 			player.Location ().CheckExit ("north");
-		if (inp[0] == PlayerCommands.ExitSouth)
+		else if (inp [0] == PlayerCommands.ExitSouth && !moving)
 			player.Location ().CheckExit ("south");
-		if (inp[0] == PlayerCommands.ExitWest)
+		else if (inp [0] == PlayerCommands.ExitWest && !moving)
 			player.Location ().CheckExit ("west");
-		if (inp[0] == PlayerCommands.Attack && inp.Length == 2)
-			player.Location().CheckAttack(inp[1]);
+		else if (inp [0] == PlayerCommands.Attack && inp.Length == 2)
+			player.Location ().CheckAttack (inp [1]);
+		else {
+			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (0, 0, 1);
+			chat.GetComponent<UpdateChatText> ().UpdateChat ("<color=#00ffffff>> What? </color>");
+			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (1, 1, 1);
+			chat.transform.Find ("ScrollView").gameObject.GetComponent<ScrollRect> ().gameObject.transform.Find ("Scrollbar Vertical").gameObject.GetComponent<Scrollbar> ().value = 0.0f;
+		}
 	}
 }
