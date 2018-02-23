@@ -37,7 +37,8 @@ public class UpdateRoomStats : MonoBehaviour {
 	string PrintNPC(Room room) {
 		string ret = "NPCs: \n";
 		foreach (Entity e in room.ents) {
-			ret = ret + e.name + '\n'; 
+			if(!e.isPlayer)
+				ret = ret + e.name + '\n'; 
 		}
 		return ret;
 	}

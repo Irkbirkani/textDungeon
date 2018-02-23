@@ -4,7 +4,7 @@ using UnityEngine;
 
 public static class PlayerCommands {
 
-	private static string exitNorth = "north", exitEast = "east", exitSouth = "south", exitWest = "west";
+	private static string exitNorth = "north", exitEast = "east", exitSouth = "south", exitWest = "west", attack = "attack";
 
 	public static string ExitNorth {
 		get { return exitNorth; }
@@ -25,4 +25,10 @@ public static class PlayerCommands {
 		get { return exitWest; }
 		set { exitWest = value; }
 	}
+
+	public static string Attack {
+		get { return attack; }
+		set { attack = value; }
+	}
+
 }

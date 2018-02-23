@@ -1,41 +1,18 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Room\Room.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets\Scripts\Entities\Entity.cs">
     <Files>
-      <File FileName="Assets\Scripts\Utility\ProcessInput.cs" Line="24" Column="4" />
-      <File FileName="Assets\Scripts\Utility\PlayerCommands.cs" Line="1" Column="1" />
-      <File FileName="Assets\Scripts\Room\Room.cs" Line="50" Column="48" />
+      <File FileName="Assets\Scripts\Utility\ProcessInput.cs" Line="32" Column="42" />
+      <File FileName="Assets\Scripts\Utility\PlayerCommands.cs" Line="31" Column="15" />
+      <File FileName="Assets\Scripts\Room\Room.cs" Line="25" Column="3" />
       <File FileName="Assets\Scripts\Room\Exit.cs" Line="20" Column="43" />
-      <File FileName="Assets\Scripts\Utility\InitialSetup.cs" Line="14" Column="11" />
+      <File FileName="Assets\Scripts\Utility\InitialSetup.cs" Line="1" Column="1" />
       <File FileName="Assets\Scripts\Utility\UpdateChatText.cs" Line="23" Column="41" />
-      <File FileName="Assets\Scripts\Room\UpdateRoomStats.cs" Line="42" Column="14" />
-      <File FileName="Assets\Scripts\Entities\Entity.cs" Line="78" Column="42" />
-      <File FileName="Assets\Scripts\Entities\Movement.cs" Line="40" Column="6" />
+      <File FileName="Assets\Scripts\Room\UpdateRoomStats.cs" Line="41" Column="5" />
+      <File FileName="Assets\Scripts\Entities\Entity.cs" Line="69" Column="27" />
+      <File FileName="Assets\Scripts\Entities\Movement.cs" Line="35" Column="59" />
+      <File FileName="Assets\Scripts\Entities\PlayerStats.cs" Line="36" Column="25" />
     </Files>
-    <Pads>
-      <Pad Id="ProjectPad">
-        <State name="__root__">
-          <Node name="Text Dungeon" expanded="True">
-            <Node name="Assembly-CSharp" expanded="True">
-              <Node name="Scripts" expanded="True">
-                <Node name="Entities" expanded="True">
-                  <Node name="Player" expanded="True" />
-                </Node>
-                <Node name="Room" expanded="True">
-                  <Node name="Room.cs" selected="True" />
-                </Node>
-                <Node name="Utility" expanded="True" />
-              </Node>
-            </Node>
-          </Node>
-        </State>
-      </Pad>
-      <Pad Id="MonoDevelop.NUnit.TestPad">
-        <State name="__root__">
-          <Node name="Text Dungeon" expanded="True" selected="True" />
-        </State>
-      </Pad>
-    </Pads>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.Breakpoints>
     <BreakpointStore />

@@ -5015,7 +5015,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!114 &920318329
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -5206,6 +5206,7 @@ MonoBehaviour:
   - {fileID: 1619784695}
   location: World
   Name: Place3
+  startLoc: {x: 0, y: 3000}
 --- !u!4 &963433690
 Transform:
   m_ObjectHideFlags: 0
@@ -5582,6 +5583,7 @@ MonoBehaviour:
   ents: []
   location: World
   Name: Place2
+  startLoc: {x: 0, y: 2000}
 --- !u!4 &997514071
 Transform:
   m_ObjectHideFlags: 0
@@ -8784,6 +8786,7 @@ MonoBehaviour:
   ents: []
   location: World
   Name: Place
+  startLoc: {x: 0, y: 1000}
 --- !u!4 &1647403996
 Transform:
   m_ObjectHideFlags: 0

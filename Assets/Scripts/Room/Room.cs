@@ -9,6 +9,7 @@ public class Room : MonoBehaviour {
 	public List<Item> items;
 	public List<Entity> ents = new List<Entity>();
     public string location = "World", Name = "Place";
+	public Vector2 startLoc;
 
 	// Use this for initialization
 	void Start () {
@@ -19,15 +20,15 @@ public class Room : MonoBehaviour {
 	void Update () {
 		
 	}
+
+	public void CheckAttack(string tgt) {
+		
+	}
     
     public void AddEntity(Entity ent)
     {
         ents.Add(ent);
         ent.transform.parent = transform;
-        foreach (Entity e in ents)
-        {
-            Debug.Log(e.Name+ " Added to " + Name);
-        }
     }
 
 	public Entity GetPlayer() {
@@ -50,7 +51,7 @@ public class Room : MonoBehaviour {
 		for (int i = 0; i <= exits.Length - 1; i++) {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
 				var pl = GetPlayer ();
-				GameObject.Find("Player").GetComponent<Movement> ().SetMove(true, exits [i].transform);
+				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform);
 				good = true;
 			}
 		}

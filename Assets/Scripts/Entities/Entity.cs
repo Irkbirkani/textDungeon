@@ -6,7 +6,8 @@ public class Entity : MonoBehaviour {
 
     public string Name = "You";
     public Room location;
-    private int _Health = 100, _Mana = 100, _Stamina = 100, _Level = 1;
+	private float health = 90.0f, mana = 99.0f, stamina = 99.0f, strength = 10.0f, intel = 10.0f;
+	private int level = 1;
     private bool exiting = false;
     public bool isPlayer = false;
 
@@ -19,27 +20,27 @@ public class Entity : MonoBehaviour {
     // Update is called once per frame
     void Update()
     {
-
+		
     }
 
-    public int Mana()
+    public float Mana()
     {
-        return _Mana;
+		return mana+(intel/10.0f);
     }
 
-    public int Health()
+    public float Health()
     {
-        return _Health;
+		return health+(level*10);
     }
 
-    public int Stamina()
+    public float Stamina()
     {
-        return _Stamina;
+		return stamina+(strength/10.0f);
     }
 
     public int Level()
     {
-        return _Level;
+        return level;
     }
     public Room Location()
     {
@@ -63,7 +64,7 @@ public class Entity : MonoBehaviour {
     public void SetLocation(Room newLoc)
     {
         if (location != null)
-            location.transform.position = new Vector2(0, 200);
+			location.transform.position = location.startLoc;
         newLoc.transform.position = new Vector2(0, 2);
         location = newLoc;
     }
@@ -74,6 +75,7 @@ public class Entity : MonoBehaviour {
             exiting = !exiting;
             if (exiting)
             {
+				location.RemoveEntity (this);
                 SetLocation(other.gameObject.GetComponent<Exit>().goesTo.GetParent().GetComponent<Room>());
                 location.AddEntity(this);
                 transform.position = other.gameObject.GetComponent<Exit>().goesTo.transform.position;

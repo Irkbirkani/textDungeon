@@ -19,15 +19,16 @@ public class ProcessInput : MonoBehaviour {
 	}
 
 	public void processInput(string input){
-		if (input == PlayerCommands.ExitEast) {
+		var inp = input.Split (' ');
+		if (inp[0] == PlayerCommands.ExitEast)
 			player.Location ().CheckExit ("east");
-
-		}
-		if (input == PlayerCommands.ExitNorth)
+		if (inp[0] == PlayerCommands.ExitNorth)
 			player.Location ().CheckExit ("north");
-		if (input == PlayerCommands.ExitSouth)
+		if (inp[0] == PlayerCommands.ExitSouth)
 			player.Location ().CheckExit ("south");
-		if (input == PlayerCommands.ExitWest)
+		if (inp[0] == PlayerCommands.ExitWest)
 			player.Location ().CheckExit ("west");
+		if (inp[0] == PlayerCommands.Attack && inp.Length == 2)
+			player.Location().CheckAttack(inp[1]);
 	}
 }

@@ -7,7 +7,6 @@ public class Movement : MonoBehaviour {
 	public bool moving = false;
 	public Transform newPos;
 
-
 	// Use this for initialization
 	void Start() {
 
@@ -34,7 +33,6 @@ public class Movement : MonoBehaviour {
 	public void moveTo(Transform newPos) {
 		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
 		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
-        GetComponent<Entity>().Location().RemoveEntity(GetComponent<Entity>());
 	}
 	public void SetMove(bool mv, Transform np){
 		moving = mv;
