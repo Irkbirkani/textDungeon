@@ -11,6 +11,7 @@ public class Entity : MonoBehaviour {
 	private int level = 1;
     private bool exiting = false;
     public bool isPlayer = false;
+    public bool attacking = false;
 
     // Use this for initialization
     void Start()
@@ -68,7 +69,7 @@ public class Entity : MonoBehaviour {
         return isPlayer;
     }
    
-    public void SetStamina(int dec)
+    public void SetStamina(float dec)
     {
         if (stamina + dec >= MaxStamina())
             stamina = MaxStamina();
@@ -77,7 +78,7 @@ public class Entity : MonoBehaviour {
         else
             stamina = stamina + dec;
     }
-    public void SetHealth(int dec)
+    public void SetHealth(float dec)
     {
         if (health + dec >= MaxHealth())
             health = MaxHealth();
@@ -86,7 +87,7 @@ public class Entity : MonoBehaviour {
         else
             health = health + dec;
     }
-    public void SetMana(int dec)
+    public void SetMana(float dec)
     {
         if (mana + dec >= MaxMana())
             mana = MaxMana();
@@ -94,6 +95,33 @@ public class Entity : MonoBehaviour {
             mana = 0;
         else
             mana = stamina + dec;
+    }
+
+    public void TakeDamage(float damage, Entity e)
+    {
+        if (Health()-damage > 0)
+        {
+            Debug.Log("dealing " + damage + " to " + Name);
+            attacking = true;
+            SetHealth(-damage);
+            e.TakeDamage(strength + Random.Range(-5, 5), this);
+        } else
+        {
+            attacking = false;
+            e.attacking = false;
+        }
+    }
+
+    public void Attack(Entity e)
+    {
+        Debug.Log("here");
+        if (!attacking)
+        {
+            Debug.Log("Attacking " + e.Name);
+            attacking = true;
+            float damage = strength + Random.Range(-5, 5);
+            e.TakeDamage(damage, this);
+        }
     }
 
     public void SetLocation(Room newLoc)

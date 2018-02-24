@@ -29,6 +29,7 @@ public class Room : MonoBehaviour {
             {
                 Entity pl = GetPlayer();
 				pl.GetComponent<Movement> ().SetMove (true, e.transform, 1.0f);
+                pl.Attack(e);
             }
         }
 	}
