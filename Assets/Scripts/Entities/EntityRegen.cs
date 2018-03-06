@@ -16,15 +16,20 @@ public class EntityRegen : MonoBehaviour {
 
     IEnumerator Regen()
     {
-        for(; ; ) { 
-            if (ent.Stamina() < ent.MaxStamina())
-                ent.SetStamina(delay);
-            if (ent.Health() < ent.MaxHealth())
-                ent.SetHealth(delay);
-            if (ent.Mana() < ent.MaxMana())
-                ent.SetMana(delay);
+            if (!ent.attacking)
+            {
+                if (ent.Stamina() < ent.MaxStamina())
+                    ent.SetStamina(ent.resting ? ent.restRegen : ent.regen);
+                if (ent.Health() < ent.MaxHealth())
+                    ent.SetHealth(ent.resting ? ent.restRegen : ent.regen);
+                if (ent.Mana() < ent.MaxMana())
+                    ent.SetMana(ent.resting ? ent.restRegen : ent.regen);
+            if (ent.Stamina() == ent.MaxStamina() && ent.Health() == ent.MaxHealth() && ent.Mana() == ent.MaxMana())
+                ent.resting = false;
+            }
             yield return new WaitForSeconds(delay);
-         }
+
+        StartCoroutine(Regen());
     }
 	
 	// Update is called once per frame
