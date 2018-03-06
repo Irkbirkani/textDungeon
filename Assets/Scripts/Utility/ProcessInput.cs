@@ -33,6 +33,8 @@ public class ProcessInput : MonoBehaviour {
             player.Location().CheckExit("west");
         else if (inp[0] == PlayerCommands.Attack && inp.Length == 2 && !player.attacking)
             player.Location().CheckAttack(inp[1]);
+        else if (inp[0] == PlayerCommands.Inspect && inp.Length == 2 && !player.attacking && !moving)
+            player.Location().CheckInspect(inp[1]);
         else if (inp[0] == PlayerCommands.Rest && !moving)
         {
             player.resting = true;
