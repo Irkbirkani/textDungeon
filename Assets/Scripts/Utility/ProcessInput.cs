@@ -35,6 +35,8 @@ public class ProcessInput : MonoBehaviour {
             player.Location().CheckAttack(inp[1]);
         else if (inp[0] == PlayerCommands.Inspect && inp.Length == 2 && !player.attacking && !moving)
             player.Location().CheckInspect(inp[1]);
+        else if (inp[0] == PlayerCommands.Target && inp.Length == 2 && !player.attacking && !moving)
+            player.Location().CheckTarget(inp[1]);
         else if (inp[0] == PlayerCommands.Rest && !moving)
         {
             player.resting = true;

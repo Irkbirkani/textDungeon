@@ -22,6 +22,20 @@ public class Room : MonoBehaviour {
 		
 	}
 
+    public void CheckTarget(string tgt)
+    {
+        foreach (Entity e in ents)
+        {
+            if (e.Name.ToLower().Equals(tgt.ToLower()))
+            {
+                var pl = GetPlayer();
+                pl.SetTarget(e);
+            }
+
+        }
+
+    }
+
     public void CheckInspect(string tgt)
     {
         foreach (Entity e in ents)
@@ -31,6 +45,8 @@ public class Room : MonoBehaviour {
                 GameObject info = GameObject.Find("InfoPanel").gameObject;
                 info.GetComponent<ActivateChild>().Activate(2);
                 info.GetComponent<ActivateChild>().GetActiveChild().GetComponent<UpdateInspectText>().target = e;
+                var pl = GetPlayer();
+                pl.SetTarget(e);
             }
                 
         }

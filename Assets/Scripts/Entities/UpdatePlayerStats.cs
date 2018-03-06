@@ -28,7 +28,7 @@ public class UpdatePlayerStats : MonoBehaviour {
         manaText.text = "Mana: "  + player.Mana().ToString();
         stamText.text = "Stamina: " + player.Stamina().ToString();
         if (player.attacking)
-            targetText.text = "Attacking: " + player.Target();
-        else targetText.text = "Attacking: No one.";
+            targetText.text = "Attacking: " + player.Target().Name;
+        else targetText.text = "Target: " + (player.Target() == null ? "No one." : player.Target().Name) ;
     }
 }

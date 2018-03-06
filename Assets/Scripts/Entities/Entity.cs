@@ -60,6 +60,8 @@ public class Entity : MonoBehaviour {
     public bool IsPlayer() { return isPlayer; }
     
     public Entity Target() { return target; }
+    
+    public void SetTarget(Entity t) { target = t; }
    
     public void SetStamina(float dec)
     {
