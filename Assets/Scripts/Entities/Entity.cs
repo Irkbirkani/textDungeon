@@ -6,6 +6,7 @@ public class Entity : MonoBehaviour {
 
     public string Name = "You";
     public Room location;
+    public float atkSpeed = 2.0f;
 	private float health = 90.0f, mana = 99.0f, stamina = 99.0f, strength = 10.0f, intel = 10.0f;
     private float maxHealth = 90.0f, maxMana = 99.0f, maxStamina = 99.0f;
 	private int level = 1;
@@ -58,6 +59,14 @@ public class Entity : MonoBehaviour {
     public int Level()
     {
         return level;
+    }
+    public float Strength()
+    {
+        return strength;
+    }
+    public float Intel()
+    {
+        return intel;
     }
     public Room Location()
     {
@@ -114,14 +123,8 @@ public class Entity : MonoBehaviour {
 
     public void Attack(Entity e)
     {
-        Debug.Log("here");
-        if (!attacking)
-        {
-            Debug.Log("Attacking " + e.Name);
-            attacking = true;
-            float damage = strength + Random.Range(-5, 5);
-            e.TakeDamage(damage, this);
-        }
+        this.GetComponent<EntityAttack>().SetTarget(e);
+        attacking = true;
     }
 
     public void SetLocation(Room newLoc)

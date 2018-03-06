@@ -24,6 +24,7 @@ GameObject:
   - component: {fileID: 50893153761499210}
   - component: {fileID: 114900746714639370}
   - component: {fileID: 114718199562005556}
+  - component: {fileID: 114141321420406276}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -89,6 +90,17 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
   m_EdgeRadius: 0
+--- !u!114 &114141321420406276
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 1808147221142768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 2f89333b7ce93164eba65f02a56c6190, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!114 &114718199562005556
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -102,6 +114,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Enemy
   location: {fileID: 0}
+  atkSpeed: 2
   isPlayer: 0
   attacking: 0
 --- !u!114 &114900746714639370
@@ -126,7 +139,6 @@ SpriteRenderer:
   m_Enabled: 1
   m_CastShadows: 0
   m_ReceiveShadows: 0
-  m_DynamicOccludee: 1
   m_MotionVectors: 1
   m_LightProbeUsage: 1
   m_ReflectionProbeUsage: 1
@@ -142,7 +154,6 @@ SpriteRenderer:
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
-  m_StitchLightmapSeams: 0
   m_SelectedEditorRenderState: 0
   m_MinimumChartSize: 4
   m_AutoUVMaxDistance: 0.5
