@@ -19,6 +19,8 @@ public class Entity : MonoBehaviour {
     public int regen = 2;
     public int restRegen = 5;
     private bool dead = false;
+    private List<Item> inventory = new List<Item>();
+    private int maxInventorySize = 10;
 
     // Use this for initialization
     void Start()
@@ -62,6 +64,18 @@ public class Entity : MonoBehaviour {
     public Entity Target() { return target; }
     
     public void SetTarget(Entity t) { target = t; }
+
+    public bool AddToInventory(Item i)
+    {
+        if (inventory.Count >= maxInventorySize)
+            return false;
+        inventory.Add(i);
+        return true;
+    }
+    public bool RemoveFromInventory(string itm)
+    {
+        return false;
+    }
    
     public void SetStamina(float dec)
     {

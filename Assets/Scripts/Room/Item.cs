@@ -4,6 +4,10 @@ using UnityEngine;
 
 public class Item : MonoBehaviour {
 
+    public string Name = "Item";
+    //public ItemType;
+    
+
 	// Use this for initialization
 	void Start () {
 		

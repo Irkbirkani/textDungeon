@@ -53,6 +53,28 @@ public class Room : MonoBehaviour {
         
     }
 
+    public void CheckItem(string tgt)
+    {
+        foreach (Item i in items)
+        {
+            if (i.Name.ToLower().Equals(tgt.ToLower()))
+            {
+                Debug.Log("Here");
+                var pl = GetPlayer();
+                if (pl.AddToInventory(i))
+                {
+                    pl.GetComponent<Movement>().SetMove(true, i.transform, 1.0f);
+                    items.Remove(i);
+                    print(i.Name + " added to inventory", "#00ffffff");
+                    i.gameObject.SetActive(false);
+                    pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
+                    break;
+                }
+            }
+
+        }
+    }
+
     public bool InRoom(string tgt)
     {
         foreach(Entity e in ents)
@@ -71,15 +93,20 @@ public class Room : MonoBehaviour {
                 Entity pl = GetPlayer();
                 pl.resting = false;
 				pl.GetComponent<Movement> ().SetMove (true, e.transform, 1.0f);
-                GameObject chat = GameObject.Find("PlayerControl").gameObject;
-                chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
-                chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>> Attacking "+e.Name+"!</color>");
-                chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
-                chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+                print("Attacking " + e.Name + "!", "#ff0000ff");
                 pl.Attack(e);
             }
         }
 	}
+
+    private void print(string s, string col)
+    {
+        GameObject chat = GameObject.Find("PlayerControl").gameObject;
+        chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
+        chat.GetComponent<UpdateChatText>().UpdateChat("<color="+col+">> " + s + "</color>");
+        chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
+        chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+    }
     
     public void AddEntity(Entity ent)
     {
@@ -114,11 +141,7 @@ public class Room : MonoBehaviour {
 			}
 		}
 		if (!good) {
-			GameObject chat = GameObject.Find ("PlayerControl").gameObject;
-			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (0, 0, 1);
-			chat.GetComponent<UpdateChatText> ().UpdateChat ("<color=#00ffffff>>"+ " " + Name + ": Can't go that way!</color>");
-			chat.transform.Find ("ScrollView").gameObject.transform.Find ("Viewport").gameObject.transform.Find ("Content").gameObject.GetComponent<Text> ().color = new Color (1, 1, 1);
-			chat.transform.Find ("ScrollView").gameObject.GetComponent<ScrollRect> ().gameObject.transform.Find ("Scrollbar Vertical").gameObject.GetComponent<Scrollbar> ().value = 0.0f;
+            print(Name + ": Can't go that way!", "#00ffffff");
 		}
 	}
 }
