@@ -79,9 +79,9 @@ public class Entity : MonoBehaviour {
    
     public void SetStamina(float dec)
     {
-        if (stamina + dec > MaxStamina())
-            stamina = MaxStamina();
-        else if (stamina + dec <= 0)
+        if (Stamina() + dec > MaxStamina())
+            stamina = maxStamina;
+        else if (Stamina() + dec <= 0)
             stamina = 0;
         else
             stamina = stamina + dec;
@@ -89,9 +89,9 @@ public class Entity : MonoBehaviour {
 
     public void SetHealth(float dec)
     {
-        if (health + dec >= 100) // MaxHealth())
-            health = MaxHealth();
-        else if (health + dec <= 0)
+        if ((Health() + dec) >= MaxHealth())
+            health = maxHealth;
+        else if (Health() + dec <= 0)
             health = 0;
         else
             health = health + dec;
@@ -99,9 +99,9 @@ public class Entity : MonoBehaviour {
 
     public void SetMana(float dec)
     {
-        if (mana + dec > MaxMana())
-            mana = MaxMana();
-        else if (mana + dec <= 0)
+        if (Mana() + dec > MaxMana())
+            mana = maxMana;
+        else if (Mana() + dec <= 0)
             mana = 0;
         else
             mana = stamina + dec;

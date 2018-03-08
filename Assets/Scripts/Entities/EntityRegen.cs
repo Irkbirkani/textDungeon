@@ -18,14 +18,14 @@ public class EntityRegen : MonoBehaviour {
     {
             if (!ent.attacking)
             {
-                if (ent.Stamina() < ent.MaxStamina())
+                //if (ent.Stamina() < ent.MaxStamina())
                     ent.SetStamina(ent.resting ? ent.restRegen : ent.regen);
-                if (ent.Health() < ent.MaxHealth())
+                //if (ent.Health() < ent.MaxHealth())
                     ent.SetHealth(ent.resting ? ent.restRegen : ent.regen);
-                if (ent.Mana() < ent.MaxMana())
+                //if (ent.Mana() < ent.MaxMana())
                     ent.SetMana(ent.resting ? ent.restRegen : ent.regen);
-            if (ent.Stamina() == ent.MaxStamina() && ent.Health() == ent.MaxHealth() && ent.Mana() == ent.MaxMana())
-                ent.resting = false;
+                if (ent.Stamina() == ent.MaxStamina() && ent.Health() == ent.MaxHealth() && ent.Mana() == ent.MaxMana())
+                    ent.resting = false;
             }
             yield return new WaitForSeconds(delay);
 
