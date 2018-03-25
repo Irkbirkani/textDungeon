@@ -61,9 +61,9 @@ public class Room : MonoBehaviour {
             {
                 Debug.Log("Here");
                 var pl = GetPlayer();
+                pl.GetComponent<Movement>().SetMove(true, i.transform, 1.0f);
                 if (pl.AddToInventory(i))
-                {
-                    pl.GetComponent<Movement>().SetMove(true, i.transform, 1.0f);
+                {                   
                     items.Remove(i);
                     print(i.Name + " added to inventory", "#00ffffff");
                     i.gameObject.SetActive(false);
