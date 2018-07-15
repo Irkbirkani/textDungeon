@@ -90,11 +90,29 @@ public class Room : MonoBehaviour {
         var pl = GetPlayer();
         if (pl.AddToInventory(tgt))
         {
+<<<<<<< HEAD
             pl.GetComponent<Movement>().SetMove(true, tgt.transform, 1.0f);
             items.Remove(tgt);
             print(tgt.Name + " added to inventory", "#00ffffff");
             tgt.gameObject.SetActive(false);
             pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
+=======
+            if (i.Name.ToLower().Equals(tgt.ToLower()))
+            {
+                Debug.Log("Here");
+                var pl = GetPlayer();
+                pl.GetComponent<Movement>().SetMove(true, i.transform, 1.0f);
+                if (pl.AddToInventory(i))
+                {                   
+                    items.Remove(i);
+                    print(i.Name + " added to inventory", "#00ffffff");
+                    i.gameObject.SetActive(false);
+                    pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
+                    break;
+                }
+            }
+
+>>>>>>> 7169f58806b89f4c5007b4a2d98d099fa311e5f2
         }
     }
 
