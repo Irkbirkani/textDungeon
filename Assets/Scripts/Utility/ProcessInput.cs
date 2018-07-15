@@ -24,21 +24,21 @@ public class ProcessInput : MonoBehaviour {
 		var moving = player.GetComponent<Movement>().moving;
 		var inp = input.Split (' ');
         if (inp[0] == PlayerCommands.ExitEast && !moving && !player.attacking)
-            player.Location().CheckExit("east");
+            player.Location().Check("","move","east");
         else if (inp[0] == PlayerCommands.ExitNorth && !moving && !player.attacking)
-            player.Location().CheckExit("north");
+            player.Location().Check("","move","north");
         else if (inp[0] == PlayerCommands.ExitSouth && !moving && !player.attacking)
-            player.Location().CheckExit("south");
+            player.Location().Check("","move","south");
         else if (inp[0] == PlayerCommands.ExitWest && !moving && !player.attacking)
-            player.Location().CheckExit("west");
+            player.Location().Check("","move", "west");
         else if (inp[0] == PlayerCommands.Attack && inp.Length == 2 && !player.attacking)
-            player.Location().CheckAttack(inp[1]);
+            player.Location().Check(inp[1],"ent", "attack");
         else if (inp[0] == PlayerCommands.Inspect && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().CheckInspect(inp[1]);
+            player.Location().Check(inp[1],"ent", "inspect");
         else if (inp[0] == PlayerCommands.Target && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().CheckTarget(inp[1]);
+            player.Location().Check(inp[1],"ent","target");
         else if (inp[0] == PlayerCommands.Get && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().CheckItem(inp[1]);
+            player.Location().Check(inp[1],"item","get");
         else if (inp[0] == PlayerCommands.Rest && !moving)
         {
             player.resting = true;
@@ -50,7 +50,7 @@ public class ProcessInput : MonoBehaviour {
         else if (inp[0] == PlayerCommands.Flee && player.attacking)
         {
             var arr = new string[] { "north", "south", "east", "west" };
-            player.Location().CheckExit(arr[Random.Range(0, 3)]);
+            player.Location().Check("", "move", arr[Random.Range(0, 3)]);
         }
         else
         {
