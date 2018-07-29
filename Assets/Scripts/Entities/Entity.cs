@@ -129,7 +129,7 @@ public class Entity : MonoBehaviour {
             {
                 GameObject chat = GameObject.Find("PlayerControl").gameObject;
                 chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
-                chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>> Enemy hit you for "+ damage +" damage!</color>");
+                chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>< Enemy hit you for "+ damage +" damage!</color>");
                 chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
                 chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
             }

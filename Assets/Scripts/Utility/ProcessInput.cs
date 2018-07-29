@@ -54,10 +54,7 @@ public class ProcessInput : MonoBehaviour {
         }
         else
         {
-            chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
-            chat.GetComponent<UpdateChatText>().UpdateChat("<color=#00ffffff>> What? </color>");
-            chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
-            chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+            player.Location().print("< What?", "#00ffffff");
         }
 	}
 }

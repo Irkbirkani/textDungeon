@@ -241,7 +241,6 @@
     <Reference Include="UnityEngine.HoloLens">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
     </Reference>
-<<<<<<< HEAD
     <Reference Include="UnityEditor.SpatialTracking">
       <HintPath>C:/Program Files/Unity/Editor/Data/UnityExtensions/Unity/UnitySpatialTracking/Editor/UnityEditor.SpatialTracking.dll</HintPath>
     </Reference>
@@ -281,8 +280,6 @@
     <Reference Include="UnityEngine.StandardEvents">
       <HintPath>C:/Users/Asa Turner/AppData/LocalLow/Unity/cache/packages/packages.unity.com/com.unity.standardevents@1.0.10/UnityEngine.StandardEvents.dll</HintPath>
     </Reference>
-=======
->>>>>>> 7169f58806b89f4c5007b4a2d98d099fa311e5f2
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Assets\Scripts\Entities\Entity.cs" />

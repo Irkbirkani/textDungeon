@@ -90,29 +90,11 @@ public class Room : MonoBehaviour {
         var pl = GetPlayer();
         if (pl.AddToInventory(tgt))
         {
-<<<<<<< HEAD
             pl.GetComponent<Movement>().SetMove(true, tgt.transform, 1.0f);
             items.Remove(tgt);
-            print(tgt.Name + " added to inventory", "#00ffffff");
+            print("< " + tgt.Name + " added to inventory", "#00ffffff");
             tgt.gameObject.SetActive(false);
             pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
-=======
-            if (i.Name.ToLower().Equals(tgt.ToLower()))
-            {
-                Debug.Log("Here");
-                var pl = GetPlayer();
-                pl.GetComponent<Movement>().SetMove(true, i.transform, 1.0f);
-                if (pl.AddToInventory(i))
-                {                   
-                    items.Remove(i);
-                    print(i.Name + " added to inventory", "#00ffffff");
-                    i.gameObject.SetActive(false);
-                    pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
-                    break;
-                }
-            }
-
->>>>>>> 7169f58806b89f4c5007b4a2d98d099fa311e5f2
         }
     }
 
@@ -130,15 +112,15 @@ public class Room : MonoBehaviour {
            Entity pl = GetPlayer();
            pl.resting = false;
 		   pl.GetComponent<Movement> ().SetMove (true, tgt.transform, 1.0f);
-           print("Attacking " + tgt.Name + "!", "#ff0000ff");
+           print("< Attacking " + tgt.Name + "!", "#ff0000ff");
            pl.Attack(tgt);
 	}
 
-    private void print(string s, string col)
+    public void print(string s, string col)
     {
         GameObject chat = GameObject.Find("PlayerControl").gameObject;
         chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
-        chat.GetComponent<UpdateChatText>().UpdateChat("<color="+col+">> " + s + "</color>");
+        chat.GetComponent<UpdateChatText>().UpdateChat("<color="+col+"> " + s + "</color>");
         chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
         chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
     }
@@ -176,7 +158,7 @@ public class Room : MonoBehaviour {
 			}
 		}
 		if (!good) {
-            print(Name + ": Can't go that way!", "#00ffffff");
+            print("< "+ Name + ": Can't go that way!", "#00ffffff");
 		}
 	}
 }

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2015
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "textDungeon.CSharp", "textDungeon.CSharp.csproj", "{D355AF9F-064B-DFC2-5631-10AAC401E5DE}"
+# Visual Studio 2017
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "textDungeon", "textDungeon.csproj", "{693E4266-4B6F-E8B8-4338-566A1521DDEB}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -9,10 +9,10 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{D355AF9F-064B-DFC2-5631-10AAC401E5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{D355AF9F-064B-DFC2-5631-10AAC401E5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{D355AF9F-064B-DFC2-5631-10AAC401E5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{D355AF9F-064B-DFC2-5631-10AAC401E5DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{693E4266-4B6F-E8B8-4338-566A1521DDEB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{693E4266-4B6F-E8B8-4338-566A1521DDEB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{693E4266-4B6F-E8B8-4338-566A1521DDEB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{693E4266-4B6F-E8B8-4338-566A1521DDEB}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
