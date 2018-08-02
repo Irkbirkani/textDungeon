@@ -175,7 +175,7 @@ public class Entity : MonoBehaviour {
     {
         if (location != null)
 			location.transform.position = location.startLoc;
-        newLoc.transform.position = new Vector2(0, 2);
+        newLoc.transform.position = new Vector2(0,2);
         location = newLoc;
     }
 

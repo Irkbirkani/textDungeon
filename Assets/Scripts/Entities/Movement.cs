@@ -7,6 +7,7 @@ public class Movement : MonoBehaviour {
 	public bool moving = false;
 	public Transform newPos;
     private float mag = 0.01f;
+    private 
 
 	// Use this for initialization
 	void Start() {
