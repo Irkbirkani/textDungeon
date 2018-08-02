@@ -7,7 +7,7 @@ public class Movement : MonoBehaviour {
 	public bool moving = false;
 	public Transform newPos;
     private float mag = 0.01f;
-    private 
+    private Object tgt;
 
 	// Use this for initialization
 	void Start() {
@@ -37,6 +37,12 @@ public class Movement : MonoBehaviour {
 		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
 		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
 	}
+    public void moveToTarget(Transform newPos, Object obj)
+    {
+		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
+		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
+        tgt = obj;
+    }
 	public void SetMove(bool mv, Transform np, float m){
 		mag = m;	
 		moving = mv;
