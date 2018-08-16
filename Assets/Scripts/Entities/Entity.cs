@@ -72,6 +72,10 @@ public class Entity : MonoBehaviour {
         inventory.Add(i);
         return true;
     }
+    public bool InInventory(Item itm)
+    {
+        return inventory.Contains(itm);
+    }
     public bool RemoveFromInventory(string itm)
     {
         return false;
