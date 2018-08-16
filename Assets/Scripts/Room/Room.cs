@@ -90,11 +90,7 @@ public class Room : MonoBehaviour {
         var pl = GetPlayer();
         if (pl.AddToInventory(tgt))
         {
-            pl.GetComponent<Movement>().SetMove(true, tgt.transform, 1.0f);
-            items.Remove(tgt);
-            print("< " + tgt.Name + " added to inventory", "#00ffffff");
-            tgt.gameObject.SetActive(false);
-            pl.GetComponent<Movement>().SetMove(true, transform, 0.01f);
+            pl.GetComponent<Movement>().moveToTarget(tgt.transform, 1.0f, tgt);
         }
     }
 
@@ -111,9 +107,7 @@ public class Room : MonoBehaviour {
 	void Attack(Entity tgt) {
            Entity pl = GetPlayer();
            pl.resting = false;
-		   pl.GetComponent<Movement> ().SetMove (true, tgt.transform, 1.0f);
-           print("< Attacking " + tgt.Name + "!", "#ff0000ff");
-           pl.Attack(tgt);
+		   pl.GetComponent<Movement> ().moveToTarget(tgt.transform, 1.0f, tgt);
 	}
 
     public void print(string s, string col)
@@ -140,6 +134,26 @@ public class Room : MonoBehaviour {
 		}
 		return pl;
 	}
+
+    public void SortMoveObject(Object obj)
+    {
+        if(obj is Item)
+        {
+            Item tgt = (Item)obj;
+            items.Remove(tgt);
+            print("< " + tgt.Name + " added to inventory", "#00ffffff");
+            tgt.gameObject.SetActive(false);
+            GetPlayer().GetComponent<Movement>().SetMove(true, transform, 0.01f);
+        } else if (obj is Entity)
+        {
+            Entity tgt = (Entity)obj;
+            if (!tgt.IsPlayer())
+            {
+                print("< Attacking " + tgt.Name + "!", "#ff0000ff");
+                GetPlayer().Attack(tgt);
+            }
+        }
+    }
 
     public void RemoveEntity(Entity ent)
     {

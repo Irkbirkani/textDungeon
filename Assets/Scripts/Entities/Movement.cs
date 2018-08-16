@@ -29,6 +29,9 @@ public class Movement : MonoBehaviour {
 				moving = false;
 				mag = 0.01f;
 				GetComponent<Rigidbody2D>().velocity = new Vector2(0, 0);
+                if (tgt != null)
+                    GetComponent<Entity>().location.SortMoveObject(tgt);
+                tgt = null;
 			}
 		}
 	}
@@ -37,11 +40,12 @@ public class Movement : MonoBehaviour {
 		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
 		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
 	}
-    public void moveToTarget(Transform newPos, Object obj)
+    public void moveToTarget(Transform np,float offset, Object obj)
     {
-		Vector2 vel = GetComponent<Transform> ().position - newPos.transform.position;
-		GetComponent<Rigidbody2D> ().velocity = -vel.normalized;
+        moving = true;
+        newPos = np;
         tgt = obj;
+        mag = offset;
     }
 	public void SetMove(bool mv, Transform np, float m){
 		mag = m;	
