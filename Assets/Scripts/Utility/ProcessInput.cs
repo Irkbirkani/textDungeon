@@ -43,6 +43,14 @@ public class ProcessInput : MonoBehaviour {
         {
             GameObject info = GameObject.Find("InfoPanel").gameObject;
             var child = info.transform.Find("CharacterPanel");
+            info.GetComponent<InfoPanel>().Deactivate();
+            child.gameObject.SetActive(true);
+        }
+        else if (inp[0] == PlayerCommands.Inventory)
+        {
+            GameObject info = GameObject.Find("InfoPanel").gameObject;
+            var child = info.transform.Find("InventoryPanel");
+            info.GetComponent<InfoPanel>().Deactivate();
             child.gameObject.SetActive(true);
         }
         else if (inp[0] == PlayerCommands.Rest && !moving)

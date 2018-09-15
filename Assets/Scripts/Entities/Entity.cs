@@ -65,6 +65,18 @@ public class Entity : MonoBehaviour {
     
     public void SetTarget(Entity t) { target = t; }
 
+    public List<Item> Inventory() { return inventory; }
+
+    public string PrintInventory()
+    {
+        string ret = "";
+        for (int i = 0; i < inventory.Count; ++i)
+        {
+            ret = ret + inventory[i].name + "\n";
+        }
+        return ret;
+    }
+
     public bool AddToInventory(Item i)
     {
         if (inventory.Count >= maxInventorySize)

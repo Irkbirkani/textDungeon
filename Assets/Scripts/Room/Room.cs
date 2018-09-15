@@ -82,8 +82,10 @@ public class Room : MonoBehaviour {
         if (tgt is Entity)
         {
             GameObject info = GameObject.Find("InfoPanel").gameObject;
-            info.GetComponent<ActivateChild>().Activate(2);
-            info.GetComponent<ActivateChild>().GetActiveChild().GetComponent<UpdateInspectText>().target = (Entity)tgt;
+            info.GetComponent<InfoPanel>().Deactivate();
+            var child = info.transform.Find("InspectPanel").gameObject;
+            child.SetActive(true);
+            child.GetComponent<UpdateInspectText>().target = (Entity)tgt;
             pl.SetTarget((Entity)tgt);
         } else if (tgt is Item && pl.InInventory((Item)tgt))
         {
