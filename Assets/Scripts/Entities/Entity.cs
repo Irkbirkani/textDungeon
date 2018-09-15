@@ -191,11 +191,11 @@ public class Entity : MonoBehaviour {
     public void DealDamage()
     {
         float damage = strength + Random.Range(-5, 5);
-        if (this.isPlayer)
+        if (this.isPlayer && target.Name != null)
         {
             GameObject chat = GameObject.Find("PlayerControl").gameObject;
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
-            chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>>" + " Attacking " + target.Name + " for " + damage + " damage! " + target.Name + " has " + (target.Health() - damage) + " health left!</color>");
+            chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>>" + " Attacking " + target.name + " for " + damage + " damage! " + target.Name + " has " + (target.Health() - damage) + " health left!</color>");
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
             chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
         }

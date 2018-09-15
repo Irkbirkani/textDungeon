@@ -66,6 +66,7 @@ public class ProcessInput : MonoBehaviour {
         else if (inp[0] == PlayerCommands.Flee && player.attacking)
         {
             var arr = new string[] { "north", "south", "east", "west" };
+            player.attacking = false;
             player.Location().Check("", "move", arr[Random.Range(0, 3)]);
         }
         else

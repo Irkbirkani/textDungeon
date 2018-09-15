@@ -105,7 +105,7 @@ public class Room : MonoBehaviour {
     {
         items.Add(itm);
         var pl = GetPlayer();
-        itm.gameObject.transform.position = new Vector2(pl.transform.position.x + 0.75f, pl.transform.position.y);
+        itm.gameObject.transform.position = new Vector2(pl.transform.position.x + 0.75f, pl.transform.position.y - 0.75f);
         itm.gameObject.SetActive(true);
         print("< " + itm.name + " removed from inventory.", "#00ffffff");
     }
@@ -184,6 +184,7 @@ public class Room : MonoBehaviour {
                 if(pl.Target() != null)
                 {
                     pl.SetTarget(null);
+                    pl.attacking = false;
                 }
                 pl.resting = false;
 				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform, 0.01f);

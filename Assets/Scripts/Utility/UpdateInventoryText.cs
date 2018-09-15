@@ -18,6 +18,6 @@ public class UpdateInventoryText : MonoBehaviour {
         if(player.Inventory().Count <= 0)
             invText.text = "Nothing in your Inventory.";
         else 
-            invText.text = "Invnetory:\n" + player.PrintInventory();
+            invText.text = "Inventory:\n" + player.PrintInventory();
 	}
 }
