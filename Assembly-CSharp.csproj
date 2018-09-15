@@ -80,6 +80,10 @@
     <Compile Include="Assets\Scripts\Utility\UpdateChatText.cs" />
     <Compile Include="Assets\Scripts\Utility\UpdateInspectText.cs" />
     <Compile Include="Assets\Scripts\Utility\UpdateInventoryText.cs" />
+    <None Include="Assets\Resources\Data\EnemyData\EnemyData.txt" />
+    <Reference Include="UnityEditor.StandardEvents">
+      <HintPath>Y:/GitHub/textDungeon/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
+    </Reference>
     <Reference Include="Unity.TextMeshPro.Editor">
       <HintPath>Y:/GitHub/textDungeon/Library/ScriptAssemblies/Unity.TextMeshPro.Editor.dll</HintPath>
     </Reference>
@@ -88,9 +92,6 @@
     </Reference>
     <Reference Include="Unity.TextMeshPro">
       <HintPath>Y:/GitHub/textDungeon/Library/ScriptAssemblies/Unity.TextMeshPro.dll</HintPath>
-    </Reference>
-    <Reference Include="UnityEditor.StandardEvents">
-      <HintPath>Y:/GitHub/textDungeon/Library/ScriptAssemblies/UnityEditor.StandardEvents.dll</HintPath>
     </Reference>
     <Reference Include="UnityEngine.AIModule">
       <HintPath>C:/Program Files/Unity/Editor/Data/Managed/UnityEngine/UnityEngine.AIModule.dll</HintPath>

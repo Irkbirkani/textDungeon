@@ -84,13 +84,42 @@ public class Entity : MonoBehaviour {
         inventory.Add(i);
         return true;
     }
-    public bool InInventory(Item itm)
+    public bool InInventory(string itm)
     {
-        return inventory.Contains(itm);
-    }
-    public bool RemoveFromInventory(string itm)
-    {
+        foreach (Item i in inventory)
+        {
+            if (i.name.ToLower().Equals(itm.ToLower()))
+            {
+                return true;
+            }
+        }
         return false;
+    }
+
+    public Item GetItem(string itm)
+    {    
+        foreach (Item i in inventory)
+        {
+            if (i.name.ToLower().Equals(itm.ToLower()))
+            {
+                
+                return i;
+            }
+        }
+        return null;
+    }
+    public void DropItem(string itm)
+    {
+        if (InInventory(itm))
+        {
+            Item i = GetItem(itm);
+            inventory.Remove(i);
+            location.AddItem(i);
+        }
+        else
+        {
+            location.print("< Item not in inventory.", "#00ffffff");
+        }
     }
    
     public void SetStamina(float dec)

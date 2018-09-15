@@ -87,7 +87,7 @@ public class Room : MonoBehaviour {
             child.SetActive(true);
             child.GetComponent<UpdateInspectText>().target = (Entity)tgt;
             pl.SetTarget((Entity)tgt);
-        } else if (tgt is Item && pl.InInventory((Item)tgt))
+        } else if (tgt is Item && pl.InInventory(tgt.name))
         {
 
         }    
@@ -100,6 +100,14 @@ public class Room : MonoBehaviour {
         {
             pl.GetComponent<Movement>().moveToTarget(tgt.transform, 1.0f, tgt);
         }
+    }
+    public void AddItem(Item itm)
+    {
+        items.Add(itm);
+        var pl = GetPlayer();
+        itm.gameObject.transform.position = new Vector2(pl.transform.position.x + 0.75f, pl.transform.position.y);
+        itm.gameObject.SetActive(true);
+        print("< " + itm.name + " removed from inventory.", "#00ffffff");
     }
 
     public bool InRoom(string tgt)
@@ -173,6 +181,10 @@ public class Room : MonoBehaviour {
 		for (int i = 0; i <= exits.Length - 1; i++) {
 			if (exits [i].name.ToLower () == exit.ToLower ()) {
 				var pl = GetPlayer ();
+                if(pl.Target() != null)
+                {
+                    pl.SetTarget(null);
+                }
                 pl.resting = false;
 				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform, 0.01f);
                 pl.SetStamina(-distance);

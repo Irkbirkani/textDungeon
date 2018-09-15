@@ -24,22 +24,24 @@ public class ProcessInput : MonoBehaviour {
 		var moving = player.GetComponent<Movement>().moving;
 		var inp = input.Split (' ');
         if (inp[0] == PlayerCommands.ExitEast && !moving && !player.attacking)
-            player.Location().Check("","move","east");
+            player.Location().Check("", "move", "east");
         else if (inp[0] == PlayerCommands.ExitNorth && !moving && !player.attacking)
-            player.Location().Check("","move","north");
+            player.Location().Check("", "move", "north");
         else if (inp[0] == PlayerCommands.ExitSouth && !moving && !player.attacking)
-            player.Location().Check("","move","south");
+            player.Location().Check("", "move", "south");
         else if (inp[0] == PlayerCommands.ExitWest && !moving && !player.attacking)
-            player.Location().Check("","move", "west");
+            player.Location().Check("", "move", "west");
         else if (inp[0] == PlayerCommands.Attack && inp.Length == 2 && !player.attacking)
-            player.Location().Check(inp[1],"ent", "attack");
+            player.Location().Check(inp[1], "ent", "attack");
         else if (inp[0] == PlayerCommands.Inspect && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().Check(inp[1],"ent", "inspect");
+            player.Location().Check(inp[1], "ent", "inspect");
         else if (inp[0] == PlayerCommands.Target && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().Check(inp[1],"ent","target");
+            player.Location().Check(inp[1], "ent", "target");
         else if (inp[0] == PlayerCommands.Get && inp.Length == 2 && !player.attacking && !moving)
-            player.Location().Check(inp[1],"item","get");
-        else if(inp[0] == PlayerCommands.Character)
+            player.Location().Check(inp[1], "item", "get");
+        else if (inp[0] == PlayerCommands.Drop && inp.Length == 2 && !player.attacking && !moving)
+            player.DropItem(inp[1]);
+        else if (inp[0] == PlayerCommands.Character)
         {
             GameObject info = GameObject.Find("InfoPanel").gameObject;
             var child = info.transform.Find("CharacterPanel");
