@@ -39,6 +39,12 @@ public class ProcessInput : MonoBehaviour {
             player.Location().Check(inp[1],"ent","target");
         else if (inp[0] == PlayerCommands.Get && inp.Length == 2 && !player.attacking && !moving)
             player.Location().Check(inp[1],"item","get");
+        else if(inp[0] == PlayerCommands.Character)
+        {
+            GameObject info = GameObject.Find("InfoPanel").gameObject;
+            var child = info.transform.Find("CharacterPanel");
+            child.gameObject.SetActive(true);
+        }
         else if (inp[0] == PlayerCommands.Rest && !moving)
         {
             player.resting = true;

@@ -5,7 +5,7 @@ using UnityEngine;
 public static class PlayerCommands {
 
 	private static string exitNorth = "north", exitEast = "east", exitSouth = "south", exitWest = "west", attack = "attack", flee = "flee", rest = "rest", inspect = "inspect", target = "target";
-    private static string get = "get";
+    private static string get = "get", character = "character";
 
 	public static string ExitNorth {
 		get { return exitNorth; }
@@ -62,4 +62,9 @@ public static class PlayerCommands {
         set { get = value; }
     }
 
+    public static string Character
+    {
+        get { return character; }
+        set { character = value; }
+    }
 }
