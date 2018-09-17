@@ -78,25 +78,27 @@ public class InitialSetup : MonoBehaviour {
 
     void LinkExits(GameObject loc)
     {
+        Debug.Log(loc.transform.childCount);
         for(int i = 0; i <= loc.transform.childCount-1; ++i)
         {
-            var exits = loc.transform.GetChild(i).GetComponent<Room>().exits;
+            List<Exit> exits = loc.transform.GetChild(i).GetComponent<Room>().exits;
+            Debug.Log(exits.Count);
             foreach(Exit e in exits)
             {
                 Debug.Log(e.name);
                 switch (e.name.ToLower()) {
                     case "north":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("south").GetComponent<Exit>();
-                        return;
+                        break;
                     case "south":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("north").GetComponent<Exit>();
-                        return;
+                        break;
                     case "west":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("east").GetComponent<Exit>();
-                        return;
+                        break;
                     case "east":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("west").GetComponent<Exit>();
-                        return;
+                        break;
                 }
             }
         }

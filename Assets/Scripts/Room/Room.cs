@@ -216,7 +216,6 @@ public class Room : MonoBehaviour {
 
         for(int i = 4; i < 12; i+=2)
         {
-            Debug.Log(i);
             if (param[i].Equals("1"))
             {
                 GameObject exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
@@ -224,15 +223,19 @@ public class Room : MonoBehaviour {
                 switch (i){
                     case 4:
                         exit.GetComponent<Exit>().MakeExit("north", param[i + 1], new Vector2(0, (System.Convert.ToInt32(param[2]) / 2) + 1));
+                        exits.Add(exit.GetComponent<Exit>());
                         break;
                     case 6:
                         exit.GetComponent<Exit>().MakeExit("east", param[i + 1], new Vector2((System.Convert.ToInt32(param[3]) / 2) + 1, 0));
+                        exits.Add(exit.GetComponent<Exit>());
                         break;
                     case 8:
                         exit.GetComponent<Exit>().MakeExit("south", param[i + 1], new Vector2(0, -(System.Convert.ToInt32(param[2]) / 2) - 1));
+                        exits.Add(exit.GetComponent<Exit>());
                         break;
                     case 10:
                         exit.GetComponent<Exit>().MakeExit("west", param[i + 1], new Vector2(-(System.Convert.ToInt32(param[2]) / 2) - 1, 0));
+                        exits.Add(exit.GetComponent<Exit>());
                         break;
                 }
             }
