@@ -5,6 +5,7 @@ using UnityEngine;
 public class Exit : MonoBehaviour {
 
 	public string name;
+    public string exitTo;
     public Exit goesTo;
 
 	// Use this for initialization

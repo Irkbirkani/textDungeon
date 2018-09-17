@@ -219,8 +219,9 @@ public class Entity : MonoBehaviour {
     public void SetLocation(Room newLoc)
     {
         if (location != null)
-			location.transform.position = location.startLoc;
-        newLoc.transform.position = new Vector2(0,2);
+            location.gameObject.SetActive(false);
+
+        newLoc.gameObject.SetActive(true);
         location = newLoc;
     }
 

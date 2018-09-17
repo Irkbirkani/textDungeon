@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Room : MonoBehaviour {
 
-    public Exit[] exits;
+    public List<Exit> exits;
 	public List<Item> items;
 	public List<Entity> ents = new List<Entity>();
     public string location = "World", Name = "Place";
@@ -178,8 +178,8 @@ public class Room : MonoBehaviour {
 
 	void Exit(string exit){
 		bool good = false;
-		for (int i = 0; i <= exits.Length - 1; i++) {
-			if (exits [i].name.ToLower () == exit.ToLower ()) {
+		for (int i = 0; i <= exits.Count - 1; i++) {
+			if (exits [i].name.ToLower ().Equals(exit.ToLower ())) {
 				var pl = GetPlayer ();
                 if(pl.Target() != null)
                 {
@@ -196,4 +196,57 @@ public class Room : MonoBehaviour {
             print("< "+ Name + ": Can't go that way!", "#00ffffff");
 		}
 	}
+
+    public void MakeRoom(string[] param)
+    {
+        location = param[0];
+        Name = param[1];
+        for(int x = -System.Convert.ToInt32(param[3])/2; x < System.Convert.ToInt32(param[3])/2; ++x)
+        {
+            for (int y = -System.Convert.ToInt32(param[2])/2; x < System.Convert.ToInt32(param[2])/2; ++y)
+            {
+                var tile = Instantiate(Resources.Load("Tile", typeof(GameObject))) as GameObject;
+                tile.transform.parent = this.transform;
+                tile.transform.position = new Vector2(x, y);
+            }
+        }
+
+        if (param[4].Equals("1")) {
+            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            exit.transform.parent = this.transform;
+            exit.transform.position = new Vector2(0, 3);
+            exit.GetComponent<Exit>().name = "north";
+            exit.GetComponent<Exit>().exitTo = param[5];
+            exits.Add(exit.GetComponent<Exit>());
+        }
+
+        if (param[6].Equals("1")) {
+            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            exit.transform.parent = this.transform;
+            exit.transform.position = new Vector2(3, 0);
+            exit.GetComponent<Exit>().name = "east";
+            exit.GetComponent<Exit>().exitTo = param[7];
+            exits.Add(exit.GetComponent<Exit>());
+        }
+
+        if (param[8].Equals("1")) {
+            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            exit.transform.parent = this.transform;
+            exit.transform.position = new Vector2(0, -3);
+            exit.GetComponent<Exit>().name = "south";
+            exit.GetComponent<Exit>().exitTo = param[9];
+            exits.Add(exit.GetComponent<Exit>());
+        }
+
+        if (param[10].Equals("1")) {
+            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            exit.transform.parent = this.transform;
+            exit.transform.position = new Vector2(-3, 0);
+            exit.GetComponent<Exit>().name = "west";
+            exit.GetComponent<Exit>().exitTo = param[11];
+            exits.Add(exit.GetComponent<Exit>());
+        }
+
+        distance = System.Convert.ToInt32(param[12]);
+    }
 }

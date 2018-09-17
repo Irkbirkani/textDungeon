@@ -31,7 +31,7 @@ public class UpdateRoomStats : MonoBehaviour {
 
 	string PrintExits(Room room) {
 		string ret = "Exits: \n";
-		for (int i = 0; i < room.exits.Length; i++)
+		for (int i = 0; i < room.exits.Count; i++)
 			ret = ret + room.exits [i].name + ": " + room.exits [i].goesTo.transform.parent.gameObject.GetComponent<Room> ().Name + "\n";
 		return ret;
 	}
