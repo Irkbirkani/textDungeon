@@ -47,6 +47,8 @@ public class InitialSetup : MonoBehaviour {
             room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
             string[] paramaters = s.Split(',');
             room.transform.parent = loc.transform;
+            room.transform.position = new Vector2(0, 2);
+            room.transform.localScale-= new Vector3(0.1f, 0.2f, 0);
             room.GetComponent<Room>().MakeRoom(paramaters);
             room.gameObject.SetActive(false);
         }

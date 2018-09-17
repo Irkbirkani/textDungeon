@@ -201,13 +201,17 @@ public class Room : MonoBehaviour {
     {
         location = param[0];
         Name = param[1];
-        for(int x = -System.Convert.ToInt32(param[3])/2; x <= (System.Convert.ToInt32(param[3])/2)-1; ++x)
+        for(int x = -System.Convert.ToInt32(param[3])/2; x <= (System.Convert.ToInt32(param[3])/2); ++x)
         {
-            for (int y = -System.Convert.ToInt32(param[2])/2; y <= (System.Convert.ToInt32(param[2])/2)-1; ++y)
+            for (int y = -System.Convert.ToInt32(param[2])/2; y <= (System.Convert.ToInt32(param[2])/2); ++y)
             {
-               GameObject tile = Instantiate(Resources.Load("Prefabs/Tile", typeof(GameObject))) as GameObject;
-               tile.transform.parent = this.transform;
-               tile.transform.position = new Vector2(x, y);
+                GameObject tile = Instantiate(Resources.Load("Prefabs/Tile", typeof(GameObject))) as GameObject;
+                tile.transform.parent = this.transform;
+                var scale = tile.transform.localScale;
+                scale.Set(1f, 1f, 1f);
+                tile.transform.localScale = scale;
+                Debug.Log(y);
+                tile.transform.position = new Vector2(x, y);
             }
         }
 
@@ -217,6 +221,9 @@ public class Room : MonoBehaviour {
             exit.transform.position = new Vector2(0, 1+System.Convert.ToInt32(param[2])/2);
             exit.GetComponent<Exit>().name = "north";
             exit.GetComponent<Exit>().exitTo = param[5];
+            var scale = exit.transform.localScale;
+            scale.Set(1f, 1f, 1f);
+            exit.transform.localScale = scale;
             exits.Add(exit.GetComponent<Exit>());
         }
 
@@ -226,6 +233,9 @@ public class Room : MonoBehaviour {
             exit.transform.position = new Vector2(1+System.Convert.ToInt32(param[3])/2, 0);
             exit.GetComponent<Exit>().name = "east";
             exit.GetComponent<Exit>().exitTo = param[7];
+            var scale = exit.transform.localScale;
+            scale.Set(1f, 1f, 1f);
+            exit.transform.localScale = scale;
             exits.Add(exit.GetComponent<Exit>());
         }
 
@@ -235,6 +245,9 @@ public class Room : MonoBehaviour {
             exit.transform.position = new Vector2(0, (-System.Convert.ToInt32(param[2])/2)-1);
             exit.GetComponent<Exit>().name = "south";
             exit.GetComponent<Exit>().exitTo = param[9];
+            var scale = exit.transform.localScale;
+            scale.Set(1f, 1f, 1f);
+            exit.transform.localScale = scale;
             exits.Add(exit.GetComponent<Exit>());
         }
 
@@ -244,6 +257,9 @@ public class Room : MonoBehaviour {
             exit.transform.position = new Vector2((-System.Convert.ToInt32(param[3])/2)-1, 0);
             exit.GetComponent<Exit>().name = "west";
             exit.GetComponent<Exit>().exitTo = param[11];
+            var scale = exit.transform.localScale;
+            scale.Set(1f, 1f, 1f);
+            exit.transform.localScale = scale;
             exits.Add(exit.GetComponent<Exit>());
         }
 
