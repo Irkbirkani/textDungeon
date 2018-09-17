@@ -211,14 +211,14 @@ public class Room : MonoBehaviour {
                 scale.Set(1f, 1f, 1f);
                 tile.transform.localScale = scale;
                 Debug.Log(y);
-                tile.transform.position = new Vector2(x, y);
+                tile.transform.localPosition = new Vector2(x, y);
             }
         }
 
         if (param[4].Equals("1")) {
             var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(0, 1+System.Convert.ToInt32(param[2])/2);
+            exit.transform.localPosition = new Vector2(0, 1+System.Convert.ToInt32(param[2])/2);
             exit.GetComponent<Exit>().name = "north";
             exit.GetComponent<Exit>().exitTo = param[5];
             var scale = exit.transform.localScale;
@@ -230,7 +230,7 @@ public class Room : MonoBehaviour {
         if (param[6].Equals("1")) {
             var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(1+System.Convert.ToInt32(param[3])/2, 0);
+            exit.transform.localPosition = new Vector2(1+System.Convert.ToInt32(param[3])/2, 0);
             exit.GetComponent<Exit>().name = "east";
             exit.GetComponent<Exit>().exitTo = param[7];
             var scale = exit.transform.localScale;
@@ -242,7 +242,7 @@ public class Room : MonoBehaviour {
         if (param[8].Equals("1")) {
             var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(0, (-System.Convert.ToInt32(param[2])/2)-1);
+            exit.transform.localPosition = new Vector2(0, (-System.Convert.ToInt32(param[2])/2)-1);
             exit.GetComponent<Exit>().name = "south";
             exit.GetComponent<Exit>().exitTo = param[9];
             var scale = exit.transform.localScale;
@@ -254,7 +254,7 @@ public class Room : MonoBehaviour {
         if (param[10].Equals("1")) {
             var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2((-System.Convert.ToInt32(param[3])/2)-1, 0);
+            exit.transform.localPosition = new Vector2((-System.Convert.ToInt32(param[3])/2)-1, 0);
             exit.GetComponent<Exit>().name = "west";
             exit.GetComponent<Exit>().exitTo = param[11];
             var scale = exit.transform.localScale;
