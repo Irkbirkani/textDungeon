@@ -201,47 +201,47 @@ public class Room : MonoBehaviour {
     {
         location = param[0];
         Name = param[1];
-        for(int x = -System.Convert.ToInt32(param[3])/2; x < System.Convert.ToInt32(param[3])/2; ++x)
+        for(int x = -System.Convert.ToInt32(param[3])/2; x <= (System.Convert.ToInt32(param[3])/2)-1; ++x)
         {
-            for (int y = -System.Convert.ToInt32(param[2])/2; x < System.Convert.ToInt32(param[2])/2; ++y)
+            for (int y = -System.Convert.ToInt32(param[2])/2; y <= (System.Convert.ToInt32(param[2])/2)-1; ++y)
             {
-                var tile = Instantiate(Resources.Load("Tile", typeof(GameObject))) as GameObject;
-                tile.transform.parent = this.transform;
-                tile.transform.position = new Vector2(x, y);
+               GameObject tile = Instantiate(Resources.Load("Prefabs/Tile", typeof(GameObject))) as GameObject;
+               tile.transform.parent = this.transform;
+               tile.transform.position = new Vector2(x, y);
             }
         }
 
         if (param[4].Equals("1")) {
-            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(0, 3);
+            exit.transform.position = new Vector2(0, 1+System.Convert.ToInt32(param[2])/2);
             exit.GetComponent<Exit>().name = "north";
             exit.GetComponent<Exit>().exitTo = param[5];
             exits.Add(exit.GetComponent<Exit>());
         }
 
         if (param[6].Equals("1")) {
-            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(3, 0);
+            exit.transform.position = new Vector2(1+System.Convert.ToInt32(param[3])/2, 0);
             exit.GetComponent<Exit>().name = "east";
             exit.GetComponent<Exit>().exitTo = param[7];
             exits.Add(exit.GetComponent<Exit>());
         }
 
         if (param[8].Equals("1")) {
-            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(0, -3);
+            exit.transform.position = new Vector2(0, (-System.Convert.ToInt32(param[2])/2)-1);
             exit.GetComponent<Exit>().name = "south";
             exit.GetComponent<Exit>().exitTo = param[9];
             exits.Add(exit.GetComponent<Exit>());
         }
 
         if (param[10].Equals("1")) {
-            var exit = Instantiate(Resources.Load("Exit", typeof(GameObject))) as GameObject;
+            var exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
             exit.transform.parent = this.transform;
-            exit.transform.position = new Vector2(-3, 0);
+            exit.transform.position = new Vector2((-System.Convert.ToInt32(param[3])/2)-1, 0);
             exit.GetComponent<Exit>().name = "west";
             exit.GetComponent<Exit>().exitTo = param[11];
             exits.Add(exit.GetComponent<Exit>());

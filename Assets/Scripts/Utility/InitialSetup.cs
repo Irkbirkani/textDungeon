@@ -8,33 +8,28 @@ public class InitialSetup : MonoBehaviour {
     public InputField input;
 	public Room startRoom;
 
-    private bool testing = false;
+    private bool testing = true;
 
-    private void Awake()
-    {
-        if(testing)
-            LoadLocation("Data/LocationData/TestWorldData");
-    }
 
     void Start()
     {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
-
+        if(testing)
+            LoadLocation("Data/LocationData/TestWorldData");
         input.Select();
         input.ActivateInputField();
 
-        startRoom.AddEntity(GameObject.Find("Player").GetComponent<Entity>());
-
-        startRoom.gameObject.SetActive(true);
-        GameObject.Find ("Player").GetComponent<Entity>().SetLocation(startRoom);
+       //startRoom.AddEntity(GameObject.Find("Player").GetComponent<Entity>());
+       //startRoom.gameObject.SetActive(true);
+       //GameObject.Find ("Player").GetComponent<Entity>().SetLocation(startRoom);
     }
 
     void LoadLocation(string locationPath)
     {
         GameObject loc = new GameObject(locationPath);
         loc.transform.position = new Vector2(0, 0);
-        var Roomfile = Resources.Load<TextAsset>(locationPath + "RoomData");
+        var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
         //var Itemfile = Resources.Load<TextAsset>(locationPath + "ItemData");
         //var Enemyfile = Resources.Load<TextAsset>(locationPath + "EnemyData");
         CreateRooms(Roomfile, loc);
@@ -46,15 +41,16 @@ public class InitialSetup : MonoBehaviour {
     void CreateRooms(TextAsset rooms, GameObject loc)
     {
         string[] lines = rooms.text.Split('\n');
+        GameObject room;
         foreach(string s in lines)
         {
+            room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
             string[] paramaters = s.Split(',');
-            var room = Instantiate(Resources.Load("Room", typeof(GameObject))) as GameObject;
             room.transform.parent = loc.transform;
             room.GetComponent<Room>().MakeRoom(paramaters);
             room.gameObject.SetActive(false);
         }
-        LinkExits(loc);
+        //LinkExits(loc);
     }
 
     void PlaceEnemies(TextAsset enemy)
