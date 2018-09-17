@@ -47,12 +47,13 @@ public class InitialSetup : MonoBehaviour {
             room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
             string[] paramaters = s.Split(',');
             room.transform.parent = loc.transform;
-            room.transform.position = new Vector2(0, 2);
+            room.gameObject.name = paramaters[1];
+            room.transform.position = paramaters[4].Equals("0") && paramaters[8].Equals("1") ? new Vector2(0, 2.75f) : new Vector2(0, 2);
             room.transform.localScale-= new Vector3(0.1f, 0.2f, 0);
             room.GetComponent<Room>().MakeRoom(paramaters);
             room.gameObject.SetActive(false);
         }
-        //LinkExits(loc);
+        LinkExits(loc);
     }
 
     void PlaceEnemies(TextAsset enemy)
@@ -77,11 +78,12 @@ public class InitialSetup : MonoBehaviour {
 
     void LinkExits(GameObject loc)
     {
-        for(int i = 0; i <= loc.transform.childCount; ++i)
+        for(int i = 0; i <= loc.transform.childCount-1; ++i)
         {
             var exits = loc.transform.GetChild(i).GetComponent<Room>().exits;
             foreach(Exit e in exits)
             {
+                Debug.Log(e.name);
                 switch (e.name.ToLower()) {
                     case "north":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("south").GetComponent<Exit>();

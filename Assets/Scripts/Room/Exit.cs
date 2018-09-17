@@ -24,4 +24,14 @@ public class Exit : MonoBehaviour {
 		return transform.parent.gameObject;
 	}
 
+    public void MakeExit(string name, string exit, Vector2 loc)
+    {
+        this.transform.localPosition = loc;
+        this.GetComponent<Exit>().name = name;
+        this.gameObject.name = name;
+        this.GetComponent<Exit>().exitTo = exit;
+        var scale = this.transform.localScale;
+        scale.Set(1f, 1f, 1f);
+        this.transform.localScale = scale;
+    }
 }
