@@ -16,7 +16,7 @@ public class InitialSetup : MonoBehaviour {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
         if(testing)
-            LoadLocation("Data/LocationData/TestWorldData");
+            LoadLocation("Data/LocationData/TestWorld");
         input.Select();
         input.ActivateInputField();
 
@@ -30,11 +30,11 @@ public class InitialSetup : MonoBehaviour {
         GameObject loc = new GameObject(locationPath);
         loc.transform.position = new Vector2(0, 0);
         var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
-        //var Itemfile = Resources.Load<TextAsset>(locationPath + "ItemData");
-        //var Enemyfile = Resources.Load<TextAsset>(locationPath + "EnemyData");
+        //var Itemfile = Resources.Load<TextAsset>(locationPath + "/ItemData");
+        var Enemyfile = Resources.Load<TextAsset>(locationPath + "/EnemyData");
         CreateRooms(Roomfile, loc);
-        //PlaceEnemies(Enemyfile);
-        //PlaceItems(Itemfile);
+        LoadEnemies(Enemyfile, loc);
+        //LoadItems(Itemfile);
         //LoadPlayer(??);
     }
 
@@ -56,36 +56,13 @@ public class InitialSetup : MonoBehaviour {
         LinkExits(loc);
     }
 
-    void PlaceEnemies(TextAsset enemy)
-    {
-
-    }
-
-    void PlaceNPCS()
-    {
-
-    }
-
-    void PlaceItems(TextAsset items)
-    {
-
-    }
-
-    void LoadPlayer(TextAsset player)
-    {
-
-    }
-
     void LinkExits(GameObject loc)
     {
-        Debug.Log(loc.transform.childCount);
         for(int i = 0; i <= loc.transform.childCount-1; ++i)
         {
             List<Exit> exits = loc.transform.GetChild(i).GetComponent<Room>().exits;
-            Debug.Log(exits.Count);
             foreach(Exit e in exits)
             {
-                Debug.Log(e.name);
                 switch (e.name.ToLower()) {
                     case "north":
                         e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("south").GetComponent<Exit>();
@@ -103,4 +80,33 @@ public class InitialSetup : MonoBehaviour {
             }
         }
     }
+
+    void LoadEnemies(TextAsset enemies, GameObject loc)
+    {
+        string[] lines = enemies.text.Split('\n');
+        GameObject enemy;
+        foreach(string s in lines)
+        {
+            enemy = Instantiate(Resources.Load("Prefabs/Enemy", typeof(GameObject))) as GameObject;
+            string[] paramaters = s.Split(',');
+            enemy.transform.parent = loc.transform.Find(paramaters[1]);
+            enemy.GetComponent<Entity>().MakeEntity(paramaters, false);
+        }
+    }
+
+    void LoadNPCS()
+    {
+
+    }
+
+    void LoadItems(TextAsset items)
+    {
+
+    }
+
+    void LoadPlayer(TextAsset player)
+    {
+
+    }
+
 }

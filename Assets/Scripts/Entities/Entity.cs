@@ -224,6 +224,24 @@ public class Entity : MonoBehaviour {
         newLoc.gameObject.SetActive(true);
         location = newLoc;
     }
+    
+    public void MakeEntity(string[] param, bool player)
+    {
+        this.transform.localPosition = new Vector2(float.Parse(param[2]), float.Parse(param[3]));
+        this.name = param[0];
+        this.GetComponent<Entity>().Name = param[0];
+        atkSpeed = float.Parse(param[4]);
+        health = float.Parse(param[5]);
+        mana = float.Parse(param[6]);
+        stamina = float.Parse(param[7]);
+        strength = float.Parse(param[8]);
+        intel = float.Parse(param[9]);
+        level = int.Parse(param[10]);
+        if (player)
+        {
+            isPlayer = true;
+        }
+    }
 
     void OnTriggerEnter2D(Collider2D other)
     {

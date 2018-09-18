@@ -336,9 +336,13 @@
     <Compile Include="Packages\com.unity.standardevents\Editor\Importer.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Assets\Resources\Data\LocationData\TestWorldData\EnemyData.txt" />
-    <None Include="Assets\Resources\Data\LocationData\TestWorldData\ItemData.txt" />
-    <None Include="Assets\Resources\Data\LocationData\TestWorldData\RoomData.txt" />
+    <None Include="Assets\Resources\Data\LocationData\TestWorld\EnemyData.txt" />
+    <None Include="Assets\Resources\Data\LocationData\TestWorld\ItemData.txt" />
+    <None Include="Assets\Resources\Data\LocationData\TestWorld\RoomData.txt" />
+    <None Include="Assets\Resources\Data\PlayerData\PlayerInventory.txt" />
+    <None Include="Assets\Resources\Data\PlayerData\PlayerLocation.txt" />
+    <None Include="Assets\Resources\Data\PlayerData\PlayerStats.txt" />
+    <None Include="Assets\Resources\Data\PlayerData\PlyaerGear.txt" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Dark.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Styles\Main_Light.uss" />
     <None Include="Packages\com.unity.package-manager-ui\Editor\Resources\Templates\Alert.uxml" />
