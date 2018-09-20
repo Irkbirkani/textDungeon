@@ -1,0 +1,40 @@
+<?xml version ="1.0"?>
+<TestWorld>
+  <Room>
+    <name>Place</name>
+    <height>5</height>
+    <width>5</width>
+    <north>Place3</north>
+    <east>Place2</east>
+    <south>Place2</south>
+    <west>Place2</west>
+    <distance>10</distance>
+  </Room>
+  <Room>
+    <name>Place2</name>
+    <height>6</height>
+    <width>7</width>
+    <north>Place</north>
+    <east>Place</east>
+    <west>Place</west>
+    <distance>10</distance>
+  </Room>
+  <Room>
+    <name>Place3</name>
+    <height>6</height>
+    <width>7</width>
+    <south>Place</south>
+    <distance>10</distance>
+    <Enemy>
+      <xCoor>-2.5</xCoor>
+      <yCoor>1.5</yCoor>
+      <attackSpeed>2</attackSpeed>
+      <health>25</health>
+      <mana>25</mana>
+      <stamina>25</stamina>
+      <strength>5</strength>
+      <Intellegence>5</Intellegence>
+      <level>1</level>
+    </Enemy>
+  </Room>
+</TestWorld>

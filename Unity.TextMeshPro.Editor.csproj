@@ -383,6 +383,7 @@
     <None Include="Assets\Resources\Data\LocationData\TestWorld\EnemyData.txt" />
     <None Include="Assets\Resources\Data\LocationData\TestWorld\ItemData.txt" />
     <None Include="Assets\Resources\Data\LocationData\TestWorld\RoomData.txt" />
+    <None Include="Assets\Resources\Data\LocationData\TestWorld\Rooms.xml" />
     <None Include="Assets\Resources\Data\PlayerData\PlayerInventory.txt" />
     <None Include="Assets\Resources\Data\PlayerData\PlayerLocation.txt" />
     <None Include="Assets\Resources\Data\PlayerData\PlayerStats.txt" />
