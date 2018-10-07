@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using System.Xml;
 using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine;
@@ -197,50 +198,75 @@ public class Room : MonoBehaviour {
 		}
 	}
 
-    public void MakeRoom(string[] param)
+    public void MakeRoom(XmlNode roomNode)
     {
-        location = param[0];
-        Name = param[1];
-        for(int x = 0; x < System.Convert.ToInt32(param[3]); ++x)
+        location = transform.parent.gameObject.name;
+        Name = roomNode.Attributes["name"].InnerText;
+        int height = System.Convert.ToInt32(roomNode.SelectSingleNode("height").InnerText);
+        int width = System.Convert.ToInt32(roomNode.SelectSingleNode("width").InnerText);
+        for(int x = 0; x < width; ++x)
         {
-            for (int y = 0; y < System.Convert.ToInt32(param[2]); ++y)
+            for (int y = 0; y < height; ++y)
             {
                 GameObject tile = Instantiate(Resources.Load("Prefabs/Tile", typeof(GameObject))) as GameObject;
                 tile.transform.parent = this.transform;
                 var scale = tile.transform.localScale;
                 scale.Set(1f, 1f, 1f);
                 tile.transform.localScale = scale;
-                tile.transform.localPosition = new Vector2(x - System.Convert.ToInt32(param[3]) / 2, y - System.Convert.ToInt32(param[2]) / 2);
+                tile.transform.localPosition = new Vector2(x - width / 2, y - height / 2);
             }
         }
 
-        for(int i = 4; i < 12; i+=2)
-        {
-            if (param[i].Equals("1"))
-            {
-                GameObject exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
-                exit.transform.parent = this.transform;
-                switch (i){
-                    case 4:
-                        exit.GetComponent<Exit>().MakeExit("north", param[i + 1], new Vector2(0, (System.Convert.ToInt32(param[2]) / 2) + 1));
-                        exits.Add(exit.GetComponent<Exit>());
-                        break;
-                    case 6:
-                        exit.GetComponent<Exit>().MakeExit("east", param[i + 1], new Vector2((System.Convert.ToInt32(param[3]) / 2) + 1, 0));
-                        exits.Add(exit.GetComponent<Exit>());
-                        break;
-                    case 8:
-                        exit.GetComponent<Exit>().MakeExit("south", param[i + 1], new Vector2(0, -(System.Convert.ToInt32(param[2]) / 2) - 1));
-                        exits.Add(exit.GetComponent<Exit>());
-                        break;
-                    case 10:
-                        exit.GetComponent<Exit>().MakeExit("west", param[i + 1], new Vector2(-(System.Convert.ToInt32(param[2]) / 2) - 1, 0));
-                        exits.Add(exit.GetComponent<Exit>());
-                        break;
-                }
-            }
-        }        
+        
+        XmlNode north = roomNode.SelectSingleNode("north");
+        XmlNode south = roomNode.SelectSingleNode("south");
+        XmlNode east  = roomNode.SelectSingleNode("east");
+        XmlNode west  = roomNode.SelectSingleNode("west");
+        CreateExit(north, new Vector2(0, 3));
+        CreateExit(south, new Vector2(0, -(height / 2)-1));
+        CreateExit(east, new Vector2((width/2)+1, 0));
+        CreateExit(west, new Vector2(-(width/2)-1, 0));
 
-        distance = System.Convert.ToInt32(param[12]);
+        
+
+       // for(int i = 4; i < 12; i+=2)
+       // {
+       //     if (param[i].Equals("1"))
+       //     {
+       //         GameObject exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
+       //         exit.transform.parent = this.transform;
+       //         switch (i){
+       //             case 4:
+       //                 exit.GetComponent<Exit>().MakeExit("north", param[i + 1], new Vector2(0, (System.Convert.ToInt32(param[2]) / 2) + 1));
+       //                 exits.Add(exit.GetComponent<Exit>());
+       //                 break;
+       //             case 6:
+       //                 exit.GetComponent<Exit>().MakeExit("east", param[i + 1], new Vector2((System.Convert.ToInt32(param[3]) / 2) + 1, 0));
+       //                 exits.Add(exit.GetComponent<Exit>());
+       //                 break;
+       //             case 8:
+       //                 exit.GetComponent<Exit>().MakeExit("south", param[i + 1], new Vector2(0, -(System.Convert.ToInt32(param[2]) / 2) - 1));
+       //                 exits.Add(exit.GetComponent<Exit>());
+       //                 break;
+       //             case 10:
+       //                 exit.GetComponent<Exit>().MakeExit("west", param[i + 1], new Vector2(-(System.Convert.ToInt32(param[2]) / 2) - 1, 0));
+       //                 exits.Add(exit.GetComponent<Exit>());
+       //                 break;
+       //         }
+       //     }
+       // }        
+
+        distance = System.Convert.ToInt32(roomNode.SelectSingleNode("distance").InnerText);
+    }
+
+    void CreateExit(XmlNode xit, Vector2 pos)
+    {
+        if (xit != null)
+        {
+            GameObject exit = Instantiate(Resources.Load("Prefabs/Exit", typeof(GameObject))) as GameObject;
+            exit.transform.parent = transform;
+            exit.GetComponent<Exit>().MakeExit(xit.Name, xit.InnerText, pos);
+            exits.Add(exit.GetComponent<Exit>());
+        }
     }
 }

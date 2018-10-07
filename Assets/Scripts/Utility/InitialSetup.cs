@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using System.Xml;
 using UnityEngine;
 
 public class InitialSetup : MonoBehaviour {
@@ -16,7 +17,7 @@ public class InitialSetup : MonoBehaviour {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
         if(testing)
-            LoadLocation("Data/LocationData/TestWorld");
+            LoadLocation("/Resources/Data/LocationData/TestWorld");
         input.Select();
         input.ActivateInputField();
 
@@ -29,31 +30,61 @@ public class InitialSetup : MonoBehaviour {
     {
         GameObject loc = new GameObject(locationPath);
         loc.transform.position = new Vector2(0, 0);
-        var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
+
+        XmlDocument locFile = new XmlDocument();
+        locFile.Load(Application.dataPath + locationPath + "/Rooms.xml");
+        foreach(XmlNode locNode in locFile)
+        {
+             string locationName =  locNode.Name;
+             foreach (XmlNode roomNode in locNode)
+            {
+                CreateRooms(roomNode, loc);
+            }
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+        //var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
         //var Itemfile = Resources.Load<TextAsset>(locationPath + "/ItemData");
-        var Enemyfile = Resources.Load<TextAsset>(locationPath + "/EnemyData");
-        CreateRooms(Roomfile, loc);
-        LoadEnemies(Enemyfile, loc);
+        //var Enemyfile = Resources.Load<TextAsset>(locationPath + "/EnemyData");
+        //CreateRooms(Roomfile, loc);
+        //LoadEnemies(Enemyfile, loc);
         //LoadItems(Itemfile);
         //LoadPlayer(??);
     }
 
-    void CreateRooms(TextAsset rooms, GameObject loc)
+    void CreateRooms(XmlNode roomNode, GameObject loc)
     {
-        string[] lines = rooms.text.Split('\n');
         GameObject room;
-        foreach(string s in lines)
+        room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
+        room.transform.parent = loc.transform;
+        room.gameObject.name = roomNode.Attributes["name"].InnerText;
+        //the next few lines check and see if a room does not have a north exit and does have a south exit.
+        //this is to set the rooms in the correct position visually when they are loaded.
+        bool north = true, south = false;
+        foreach (XmlNode chldNode in roomNode.ChildNodes)
         {
-            room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
-            string[] paramaters = s.Split(',');
-            room.transform.parent = loc.transform;
-            room.gameObject.name = paramaters[1];
-            room.transform.position = paramaters[4].Equals("0") && paramaters[8].Equals("1") ? new Vector2(0, 2.75f) : new Vector2(0, 2);
-            room.transform.localScale-= new Vector3(0.1f, 0.2f, 0);
-            room.GetComponent<Room>().MakeRoom(paramaters);
-            room.gameObject.SetActive(false);
+            if (chldNode.Name.Equals("north")) north = false;
+            if (chldNode.Name.Equals("south")) south = true;
         }
-        LinkExits(loc);
+        room.transform.position = north && south ? new Vector2(0, 2.75f) : new Vector2(0, 2);
+        room.transform.localScale-= new Vector3(0.1f, 0.2f, 0);
+        room.GetComponent<Room>().MakeRoom(roomNode);
+        room.gameObject.SetActive(false);
+        //LinkExits(loc);
     }
 
     void LinkExits(GameObject loc)
