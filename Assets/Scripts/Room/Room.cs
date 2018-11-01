@@ -9,8 +9,7 @@ public class Room : MonoBehaviour {
     public List<Exit> exits;
 	public List<Item> items;
 	public List<Entity> ents = new List<Entity>();
-    public string location = "World", Name = "Place";
-	public Vector2 startLoc;
+    public string location, Name;
     public int distance = 10;
 
     public void Check(string tgt, string type, string cmd)
