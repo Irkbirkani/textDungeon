@@ -1,7 +1,6 @@
 <TestWorld>
   <Room name="Place">
-    <height>5</height>
-    <width>5</width>
+    <type>AllSmallRoom</type>
     <north>Place3</north>
     <east>Place2</east>
     <south>Place2</south>
@@ -9,16 +8,14 @@
     <distance>10</distance>
   </Room>
   <Room name="Place2">
-    <height>6</height>
-    <width>7</width>
+    <type>NEWLargeRoom</type>
     <north>Place</north>
     <east>Place</east>
     <west>Place</west>
     <distance>10</distance>
   </Room>
   <Room name="Place3">
-    <height>6</height>
-    <width>7</width>
+    <type>SLargeRoom</type>
     <south>Place</south>
     <distance>10</distance>
     <Enemy name="Enemy">
