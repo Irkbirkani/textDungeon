@@ -119,6 +119,7 @@ public class InitialSetup : MonoBehaviour {
             {
                 GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemy", typeof(GameObject))) as GameObject;
                 enemy.transform.parent = curRoom.transform;
+                enemy.GetComponent<Entity>().location = curRoom.GetComponent<Room>();
                 enemy.GetComponent<Entity>().MakeEntity(node, false);
                 curRoom.GetComponent<Room>().AddEntity(enemy.GetComponent<Entity>());
             }

@@ -162,6 +162,7 @@ public class Entity : MonoBehaviour {
             chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>> Leaving Combat</color>");
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
             chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+            this.GetComponent<Movement>().SetMove(true,location.transform, 0.01f);
         }
         attacking = false;
         target = null;

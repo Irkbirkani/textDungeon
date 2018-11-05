@@ -1,3 +1,0 @@
-TestWorld,Place,5,5,1,Place3,1,Place2,1,Place2,1,Place2,10
-TestWorld,Place2,6,7,1,Place,1,Place,0,,1,Place,10
-TestWorld,Place3,6,7,0,,0,,1,Place,0,,10
