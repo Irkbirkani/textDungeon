@@ -1,32 +1,48 @@
 <TestWorld>
   <Room name="Place">
     <type>AllSmallRoom</type>
-    <north>Place3</north>
-    <east>Place2</east>
-    <south>Place2</south>
-    <west>Place2</west>
+    <exit name="north">
+      <dest>Place3</dest>
+    </exit>
+    <exit name="east">
+      <dest>Place2</dest>
+    </exit>
+    <exit name="south">
+      <dest>Place2</dest>
+    </exit>
+    <exit name="west">
+      <dest>Place2</dest>
+    </exit>
     <distance>10</distance>
   </Room>
   <Room name="Place2">
     <type>NEWLargeRoom</type>
-    <north>Place</north>
-    <east>Place</east>
-    <west>Place</west>
+    <exit name="north">
+      <dest>Place</dest>
+    </exit>
+    <exit name="east">
+      <dest>Place</dest>
+    </exit>
+    <exit name="west">
+      <dest>Place</dest>
+    </exit>
     <distance>10</distance>
   </Room>
   <Room name="Place3">
     <type>SLargeRoom</type>
-    <south>Place</south>
+    <exit name="south">
+      <dest>Place</dest>
+    </exit>
     <distance>10</distance>
     <Enemy name="Enemy">
       <xCoor>-2.5</xCoor>
-      <yCoor>1.5</yCoor>
+      <yCoor>2.5</yCoor>
       <attackSpeed>2</attackSpeed>
-      <health>25</health>
-      <mana>25</mana>
-      <stamina>25</stamina>
+      <health>15</health>
+      <mana>24.5</mana>
+      <stamina>24.5</stamina>
       <strength>5</strength>
-      <Intellegence>5</Intellegence>
+      <intellegence>5</intellegence>
       <level>1</level>
     </Enemy>
   </Room>

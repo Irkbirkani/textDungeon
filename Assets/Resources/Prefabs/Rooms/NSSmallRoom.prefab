@@ -916,9 +916,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114801985191825008}
+  - {fileID: 114548686951623246}
   items: []
   ents: []
   location: 

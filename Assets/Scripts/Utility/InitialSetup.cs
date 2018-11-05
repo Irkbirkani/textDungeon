@@ -30,33 +30,29 @@ public class InitialSetup : MonoBehaviour {
     {
         GameObject loc = new GameObject(locationPath);
         loc.transform.position = new Vector2(0, 0);
+        loc.name = locationPath.Split('/')[locationPath.Split('/').Length-1];
 
         XmlDocument locFile = new XmlDocument();
         locFile.Load(Application.dataPath + locationPath + "/Rooms.xml");
         foreach(XmlNode locNode in locFile)
         {
-             string locationName =  locNode.Name;
-             foreach (XmlNode roomNode in locNode)
+            string locationName =  locNode.Name;
+            foreach (XmlNode roomNode in locNode)
             {
                 CreateRooms(roomNode, loc);
             }
+            foreach (XmlNode roomNode in locNode)
+        
+            {
+                LinkExits(roomNode, loc);
+            }
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+        if (testing)
+        {
+            loc.transform.Find("Place").gameObject.SetActive(true);
+            loc.transform.Find("Place").GetComponent<Room>().AddEntity(GameObject.Find("Player").GetComponent<Entity>());
+            GameObject.Find("Player").GetComponent<Entity>().SetLocation(loc.transform.Find("Place").GetComponent<Room>());
+        }
         //var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
         //var Itemfile = Resources.Load<TextAsset>(locationPath + "/ItemData");
         //var Enemyfile = Resources.Load<TextAsset>(locationPath + "/EnemyData");
@@ -69,59 +65,63 @@ public class InitialSetup : MonoBehaviour {
     void CreateRooms(XmlNode roomNode, GameObject loc)
     {
         GameObject room;
-        room = Instantiate(Resources.Load("Prefabs/Room", typeof(GameObject))) as GameObject;
+        string roomType = roomNode.SelectSingleNode("type").InnerText;
+        room = Instantiate(Resources.Load("Prefabs/Rooms/"+roomType, typeof(GameObject))) as GameObject;
         room.transform.parent = loc.transform;
         room.gameObject.name = roomNode.Attributes["name"].InnerText;
-        //the next few lines check and see if a room does not have a north exit and does have a south exit.
-        //this is to set the rooms in the correct position visually when they are loaded.
-        bool north = true, south = false;
-        foreach (XmlNode chldNode in roomNode.ChildNodes)
-        {
-            if (chldNode.Name.Equals("north")) north = false;
-            if (chldNode.Name.Equals("south")) south = true;
-        }
-        room.transform.position = north && south ? new Vector2(0, 2.75f) : new Vector2(0, 2);
-        room.transform.localScale-= new Vector3(0.1f, 0.2f, 0);
-        room.GetComponent<Room>().MakeRoom(roomNode);
+        room.GetComponent<Room>().distance = System.Int32.Parse(roomNode.SelectSingleNode("distance").InnerText);
         room.gameObject.SetActive(false);
-        //LinkExits(loc);
+        LoadEnemies(roomNode, loc);
     }
 
-    void LinkExits(GameObject loc)
+    void LinkExits(XmlNode roomNode, GameObject loc)
     {
-        for(int i = 0; i <= loc.transform.childCount-1; ++i)
+        Room curRoom = loc.transform.Find(roomNode.Attributes["name"].InnerText).GetComponent<Room>();
+        
+        foreach(XmlNode exit in roomNode)
         {
-            List<Exit> exits = loc.transform.GetChild(i).GetComponent<Room>().exits;
-            foreach(Exit e in exits)
+            if (exit.Name.Equals("exit"))
             {
-                switch (e.name.ToLower()) {
+                Exit ex, dest;
+                switch (exit.Attributes["name"].InnerText)
+                {
                     case "north":
-                        e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("south").GetComponent<Exit>();
-                        break;
-                    case "south":
-                        e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("north").GetComponent<Exit>();
-                        break;
-                    case "west":
-                        e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("east").GetComponent<Exit>();
+                        ex = curRoom.exits.Find(x => x.name.Equals("north"));
+                        dest = loc.transform.Find(exit.SelectSingleNode("dest").InnerText).GetComponent<Room>().exits.Find(x => x.name.Equals("south"));
+                        ex.goesTo = dest;
                         break;
                     case "east":
-                        e.goesTo = loc.transform.Find(e.exitTo).GetComponent<Room>().transform.Find("west").GetComponent<Exit>();
+                        ex = curRoom.exits.Find(x => x.name.Equals("east"));
+                        dest = loc.transform.Find(exit.SelectSingleNode("dest").InnerText).GetComponent<Room>().exits.Find(x => x.name.Equals("west"));
+                        ex.goesTo = dest;
+                        break;
+                    case "south":
+                        ex = curRoom.exits.Find(x => x.name.Equals("south"));
+                        dest = loc.transform.Find(exit.SelectSingleNode("dest").InnerText).GetComponent<Room>().exits.Find(x => x.name.Equals("north"));
+                        ex.goesTo = dest;
+                        break;
+                    case "west":
+                        ex = curRoom.exits.Find(x => x.name.Equals("west"));
+                        dest = loc.transform.Find(exit.SelectSingleNode("dest").InnerText).GetComponent<Room>().exits.Find(x => x.name.Equals("east"));
+                        ex.goesTo = dest;
                         break;
                 }
             }
         }
     }
 
-    void LoadEnemies(TextAsset enemies, GameObject loc)
+    void LoadEnemies(XmlNode roomNode, GameObject loc)
     {
-        string[] lines = enemies.text.Split('\n');
-        GameObject enemy;
-        foreach(string s in lines)
+        GameObject curRoom = loc.transform.Find(roomNode.Attributes["name"].InnerText).gameObject;
+        foreach(XmlNode node in roomNode)
         {
-            enemy = Instantiate(Resources.Load("Prefabs/Enemy", typeof(GameObject))) as GameObject;
-            string[] paramaters = s.Split(',');
-            enemy.transform.parent = loc.transform.Find(paramaters[1]);
-            enemy.GetComponent<Entity>().MakeEntity(paramaters, false);
+            if (node.Name.Equals("Enemy"))
+            {
+                GameObject enemy = Instantiate(Resources.Load("Prefabs/Enemy", typeof(GameObject))) as GameObject;
+                enemy.transform.parent = curRoom.transform;
+                enemy.GetComponent<Entity>().MakeEntity(node, false);
+                curRoom.GetComponent<Room>().AddEntity(enemy.GetComponent<Entity>());
+            }
         }
     }
 

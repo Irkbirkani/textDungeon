@@ -1672,10 +1672,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   exits:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
+  - {fileID: 114037028855161292, guid: 4eaa6390b0f69334bb4371cab9876155, type: 2}
+  - {fileID: 114636569048100102}
+  - {fileID: 114366263574332978}
+  - {fileID: 114846935742209262}
   items: []
   ents: []
   location: 

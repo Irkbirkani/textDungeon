@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Xml;
 using UnityEngine.UI;
 
 public class Entity : MonoBehaviour {
@@ -225,22 +226,22 @@ public class Entity : MonoBehaviour {
         location = newLoc;
     }
     
-    public void MakeEntity(string[] param, bool player)
+    public void MakeEntity(XmlNode node, bool player)
     {
-        this.transform.localPosition = new Vector2(float.Parse(param[2]), float.Parse(param[3]));
-        this.name = param[0];
-        this.GetComponent<Entity>().Name = param[0];
-        atkSpeed = float.Parse(param[4]);
-        health = float.Parse(param[5]);
-        mana = float.Parse(param[6]);
-        stamina = float.Parse(param[7]);
-        strength = float.Parse(param[8]);
-        intel = float.Parse(param[9]);
-        level = int.Parse(param[10]);
-        if (player)
-        {
-            isPlayer = true;
-        }
+        this.transform.localPosition = new Vector2(float.Parse(node.SelectSingleNode("xCoor").InnerText), float.Parse(node.SelectSingleNode("yCoor").InnerText));
+        this.name = node.Attributes["name"].InnerText;
+        this.GetComponent<Entity>().Name = node.Attributes["name"].InnerText;
+        atkSpeed     = float.Parse(node.SelectSingleNode("attackSpeed").InnerText);
+        health       = float.Parse(node.SelectSingleNode("health").InnerText);
+        maxHealth    = float.Parse(node.SelectSingleNode("health").InnerText);
+        mana         = float.Parse(node.SelectSingleNode("mana").InnerText);
+        maxMana      = float.Parse(node.SelectSingleNode("mana").InnerText);
+        stamina      = float.Parse(node.SelectSingleNode("stamina").InnerText);
+        maxStamina   = float.Parse(node.SelectSingleNode("stamina").InnerText);
+        strength     = float.Parse(node.SelectSingleNode("strength").InnerText);
+        intel        = float.Parse(node.SelectSingleNode("intellegence").InnerText);
+        level        = int.Parse(node.SelectSingleNode("level").InnerText);
+        isPlayer     = player;
     }
 
     void OnTriggerEnter2D(Collider2D other)
