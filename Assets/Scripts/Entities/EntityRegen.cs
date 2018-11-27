@@ -10,6 +10,7 @@ public class EntityRegen : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
         ent = this.gameObject.GetComponent<Entity>();
+        Debug.Log(ent.name);
         StartCoroutine(Regen());
 	}
 

@@ -55,7 +55,7 @@ public class ProcessInput : MonoBehaviour {
             info.GetComponent<InfoPanel>().Deactivate();
             child.gameObject.SetActive(true);
         }
-        else if (inp[0] == PlayerCommands.Rest && !moving)
+        else if (inp[0] == PlayerCommands.Rest && !moving && !player.attacking)
         {
             player.resting = true;
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);

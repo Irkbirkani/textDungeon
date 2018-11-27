@@ -8,16 +8,17 @@ using UnityEngine;
 public class InitialSetup : MonoBehaviour {
     public InputField input;
 	public Room startRoom;
+    public Canvas canvas;
 
     private bool testing = true;
-
 
     void Start()
     {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
-        if(testing)
-            LoadLocation("/Resources/Data/LocationData/TestWorld");
+        //if(testing)
+        //    LoadLocation("/Resources/Data/LocationData/TestWorld");
+        LoadPlayer();
         input.Select();
         input.ActivateInputField();
 
@@ -28,7 +29,7 @@ public class InitialSetup : MonoBehaviour {
 
     void LoadLocation(string locationPath)
     {
-        GameObject loc = new GameObject(locationPath);
+        GameObject loc = new GameObject();
         loc.transform.position = new Vector2(0, 0);
         loc.name = locationPath.Split('/')[locationPath.Split('/').Length-1];
 
@@ -47,19 +48,12 @@ public class InitialSetup : MonoBehaviour {
                 LinkExits(roomNode, loc);
             }
         }
-        if (testing)
-        {
-            loc.transform.Find("Place").gameObject.SetActive(true);
-            loc.transform.Find("Place").GetComponent<Room>().AddEntity(GameObject.Find("Player").GetComponent<Entity>());
-            GameObject.Find("Player").GetComponent<Entity>().SetLocation(loc.transform.Find("Place").GetComponent<Room>());
-        }
-        //var Roomfile = Resources.Load<TextAsset>(locationPath + "/RoomData");
-        //var Itemfile = Resources.Load<TextAsset>(locationPath + "/ItemData");
-        //var Enemyfile = Resources.Load<TextAsset>(locationPath + "/EnemyData");
-        //CreateRooms(Roomfile, loc);
-        //LoadEnemies(Enemyfile, loc);
-        //LoadItems(Itemfile);
-        //LoadPlayer(??);
+        //if (testing)
+        //{
+        //    loc.transform.Find("Place").gameObject.SetActive(true);
+        //    loc.transform.Find("Place").GetComponent<Room>().AddEntity(GameObject.Find("Player").GetComponent<Entity>());
+        //    GameObject.Find("Player").GetComponent<Entity>().SetLocation(loc.transform.Find("Place").GetComponent<Room>());
+        //}
     }
 
     void CreateRooms(XmlNode roomNode, GameObject loc)
@@ -69,6 +63,8 @@ public class InitialSetup : MonoBehaviour {
         room = Instantiate(Resources.Load("Prefabs/Rooms/"+roomType, typeof(GameObject))) as GameObject;
         room.transform.parent = loc.transform;
         room.gameObject.name = roomNode.Attributes["name"].InnerText;
+        room.GetComponent<Room>().location = loc.name;
+        room.GetComponent<Room>().Name = room.name;
         room.GetComponent<Room>().distance = System.Int32.Parse(roomNode.SelectSingleNode("distance").InnerText);
         room.gameObject.SetActive(false);
         LoadEnemies(roomNode, loc);
@@ -136,9 +132,36 @@ public class InitialSetup : MonoBehaviour {
 
     }
 
-    void LoadPlayer(TextAsset player)
+    void LoadPlayer()
     {
-
+        XmlDocument PlayerFile = new XmlDocument();
+        PlayerFile.Load(Application.dataPath + "/Resources/Data/PlayerData/Player.xml");
+        XmlNode PlayerNode = PlayerFile.SelectSingleNode("player");
+        foreach (XmlNode node in PlayerNode)
+        {
+            switch (node.Name)
+            {
+                case "location":
+                    LoadLocation("/Resources/Data/LocationData/" + node.SelectSingleNode("world").InnerText);
+                    GameObject player = Instantiate(Resources.Load("Prefabs/Player", typeof(GameObject))) as GameObject;
+                    GameObject room = GameObject.Find(node.SelectSingleNode("world").InnerText).transform.Find(node.SelectSingleNode("room").InnerText).gameObject;
+                    canvas.GetComponent<CanvasController>().SetPlayer(player.GetComponent<Entity>());
+                    player.transform.parent = room.transform;
+                    player.GetComponent<Entity>().location = room.GetComponent<Room>();
+                    player.GetComponent<Entity>().MakeEntity(PlayerNode.SelectSingleNode("stats"), true);
+                    room.GetComponent<Room>().AddEntity(player.GetComponent<Entity>());
+                    room.SetActive(true);
+                    break;
+            }
+        }
+        //LoadLocation(Application.dataPath + "/Resources/Data/LocationData/" + PlayerLoc.SelectSingleNode("world").InnerText + "Rooms.xml");
+        //GameObject player = Instantiate(Resources.Load("Prefabs/Player", typeof(GameObject))) as GameObject;
+        //GameObject room = GameObject.Find(PlayerLoc.SelectSingleNode("world").InnerText).transform.Find(PlayerLoc.SelectSingleNode("room").InnerText).gameObject;
+        //player.transform.parent = room.transform;
+        //player.GetComponent<Entity>().location = room.GetComponent<Room>();
+        //player.GetComponent<Entity>().MakeEntity(PlayerFile.SelectSingleNode("stats"), true);
+        //room.GetComponent<Room>().AddEntity(player.GetComponent<Entity>());
+        //TODO: Add Inventory and Gear loading
     }
 
 }

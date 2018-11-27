@@ -9,16 +9,17 @@ public class Entity : MonoBehaviour {
     public string Name = "You";
     public Room location;
     public float atkSpeed = 2.0f;
+    public int regen = 2;
+    public int restRegen = 5;
+    public bool isPlayer = false;
+    public bool attacking = false;
+    public bool resting = false;
+
 	private float health = 90.0f, mana = 99.0f, stamina = 99.0f, strength = 10.0f, intel = 10.0f;
     private float maxHealth = 90.0f, maxMana = 99.0f, maxStamina = 99.0f;
 	private int level = 1;
     private bool exiting = false;
     private Entity target;
-    public bool isPlayer = false;
-    public bool attacking = false;
-    public bool resting = false;
-    public int regen = 2;
-    public int restRegen = 5;
     private bool dead = false;
     private List<Item> inventory = new List<Item>();
     private int maxInventorySize = 10;
@@ -229,7 +230,9 @@ public class Entity : MonoBehaviour {
     
     public void MakeEntity(XmlNode node, bool player)
     {
-        this.transform.localPosition = new Vector2(float.Parse(node.SelectSingleNode("xCoor").InnerText), float.Parse(node.SelectSingleNode("yCoor").InnerText));
+        if(!player)
+            this.transform.localPosition = new Vector2(float.Parse(node.SelectSingleNode("xCoor").InnerText), float.Parse(node.SelectSingleNode("yCoor").InnerText));
+
         this.name = node.Attributes["name"].InnerText;
         this.GetComponent<Entity>().Name = node.Attributes["name"].InnerText;
         atkSpeed     = float.Parse(node.SelectSingleNode("attackSpeed").InnerText);

@@ -21,7 +21,7 @@ public class UpdateRoomStats : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		room = player.Location();
+		room = player.location;
         locationText.text = "Location: " + room.location;
         nameText.text     = "Name: " + room.Name;
 		exitsText.text    = PrintExits (room);

@@ -1,6 +1,7 @@
 <player>
   <location>
-    
+    <world>TestWorld</world>
+    <room>Place</room>
   </location>
   <gear>
     
@@ -8,7 +9,13 @@
   <inventory>
     
   </inventory>
-  <stats>
-    
+  <stats name="You">
+    <attackSpeed>2.0</attackSpeed>
+    <health>90.0</health>
+    <mana>99.0</mana>
+    <stamina>99.0</stamina>
+    <strength>10.0</strength>
+    <intellegence>10.0</intellegence>
+    <level>1</level>
   </stats>
 </player>
