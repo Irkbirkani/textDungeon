@@ -10486,7 +10486,7 @@ MonoBehaviour:
   m_HandleRect: {fileID: 784978938}
   m_Direction: 2
   m_Value: 0
-  m_Size: 1
+  m_Size: 0
   m_NumberOfSteps: 0
   m_OnValueChanged:
     m_PersistentCalls:
@@ -11639,6 +11639,7 @@ MonoBehaviour:
   isPlayer: 0
   attacking: 0
   resting: 0
+  TargetPanel: {fileID: 0}
 --- !u!4 &1619784700
 Transform:
   m_ObjectHideFlags: 0
@@ -15275,7 +15276,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 1, y: 1}
-  m_AnchoredPosition: {x: 0, y: -153.62325}
+  m_AnchoredPosition: {x: 0, y: -166.63692}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
 --- !u!114 &2013549840

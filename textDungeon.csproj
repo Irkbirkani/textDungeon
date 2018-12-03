@@ -318,6 +318,7 @@
     <Compile Include="Assets\Scripts\Room\Room.cs" />
     <Compile Include="Assets\Scripts\Room\UpdateRoomStats.cs" />
     <Compile Include="Assets\Scripts\Utility\ActivateChild.cs" />
+    <Compile Include="Assets\Scripts\Utility\BarController.cs" />
     <Compile Include="Assets\Scripts\Utility\CanvasController.cs" />
     <Compile Include="Assets\Scripts\Utility\InfoPanel.cs" />
     <Compile Include="Assets\Scripts\Utility\InitialSetup.cs" />

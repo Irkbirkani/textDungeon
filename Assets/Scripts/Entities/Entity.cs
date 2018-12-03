@@ -14,6 +14,7 @@ public class Entity : MonoBehaviour {
     public bool isPlayer = false;
     public bool attacking = false;
     public bool resting = false;
+    public UpdatePlayerStats TargetPanel; 
 
 	private float health = 90.0f, mana = 99.0f, stamina = 99.0f, strength = 10.0f, intel = 10.0f;
     private float maxHealth = 90.0f, maxMana = 99.0f, maxStamina = 99.0f;
@@ -39,6 +40,8 @@ public class Entity : MonoBehaviour {
         {
             gameObject.SetActive(false);
         }
+        if (target != null && target.dead)
+            TargetPanel.gameObject.SetActive(false);
     }
 
     public float Mana() { return mana+(intel/10.0f); }
@@ -65,7 +68,12 @@ public class Entity : MonoBehaviour {
     
     public Entity Target() { return target; }
     
-    public void SetTarget(Entity t) { target = t; }
+    public void SetTarget(Entity t)
+    {
+        target = t;
+        TargetPanel.player = target;
+        TargetPanel.gameObject.SetActive(true);
+    }
 
     public List<Item> Inventory() { return inventory; }
 
@@ -235,6 +243,9 @@ public class Entity : MonoBehaviour {
 
         this.name = node.Attributes["name"].InnerText;
         this.GetComponent<Entity>().Name = node.Attributes["name"].InnerText;
+        level        = int.Parse(node.SelectSingleNode("level").InnerText);
+        intel        = float.Parse(node.SelectSingleNode("intellegence").InnerText);
+        strength     = float.Parse(node.SelectSingleNode("strength").InnerText);
         atkSpeed     = float.Parse(node.SelectSingleNode("attackSpeed").InnerText);
         health       = float.Parse(node.SelectSingleNode("health").InnerText);
         maxHealth    = float.Parse(node.SelectSingleNode("health").InnerText);
@@ -242,9 +253,6 @@ public class Entity : MonoBehaviour {
         maxMana      = float.Parse(node.SelectSingleNode("mana").InnerText);
         stamina      = float.Parse(node.SelectSingleNode("stamina").InnerText);
         maxStamina   = float.Parse(node.SelectSingleNode("stamina").InnerText);
-        strength     = float.Parse(node.SelectSingleNode("strength").InnerText);
-        intel        = float.Parse(node.SelectSingleNode("intellegence").InnerText);
-        level        = int.Parse(node.SelectSingleNode("level").InnerText);
         isPlayer     = player;
     }
 

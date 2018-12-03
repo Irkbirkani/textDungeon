@@ -148,6 +148,7 @@ public class InitialSetup : MonoBehaviour {
                     canvas.GetComponent<CanvasController>().SetPlayer(player.GetComponent<Entity>());
                     player.transform.parent = room.transform;
                     player.GetComponent<Entity>().location = room.GetComponent<Room>();
+                    player.GetComponent<Entity>().TargetPanel = canvas.transform.Find("TargetStatPanel").GetComponent<UpdatePlayerStats>();
                     player.GetComponent<Entity>().MakeEntity(PlayerNode.SelectSingleNode("stats"), true);
                     room.GetComponent<Room>().AddEntity(player.GetComponent<Entity>());
                     room.SetActive(true);

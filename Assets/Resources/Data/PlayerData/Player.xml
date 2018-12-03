@@ -9,7 +9,7 @@
   <inventory>
     
   </inventory>
-  <stats name="You">
+  <stats name="Dave">
     <attackSpeed>2.0</attackSpeed>
     <health>90.0</health>
     <mana>99.0</mana>
