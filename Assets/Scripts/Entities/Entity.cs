@@ -75,8 +75,11 @@ public class Entity : MonoBehaviour {
         TargetPanel.gameObject.SetActive(true);
     }
 
+
+    // Inventory Management
     public List<Item> Inventory() { return inventory; }
 
+    //Prints the inventory to the infopanel
     public string PrintInventory()
     {
         string ret = "";
@@ -87,6 +90,7 @@ public class Entity : MonoBehaviour {
         return ret;
     }
 
+    //Adds An item to the inventory, but only if the inventory isnt full.
     public bool AddToInventory(Item i)
     {
         if (inventory.Count >= maxInventorySize)
@@ -94,6 +98,8 @@ public class Entity : MonoBehaviour {
         inventory.Add(i);
         return true;
     }
+
+    //Checks if an Item is in the inventory
     public bool InInventory(string itm)
     {
         foreach (Item i in inventory)
@@ -106,6 +112,7 @@ public class Entity : MonoBehaviour {
         return false;
     }
 
+    //Get's an Item from the inventory
     public Item GetItem(string itm)
     {    
         foreach (Item i in inventory)
@@ -118,6 +125,8 @@ public class Entity : MonoBehaviour {
         }
         return null;
     }
+
+    //Removes an item from the inventory and puts it in the current room.
     public void DropItem(string itm)
     {
         if (InInventory(itm))
@@ -132,14 +141,28 @@ public class Entity : MonoBehaviour {
         }
     }
    
+    /*
+     * The below three functions, SetStamina, SetHealth, SetMana do the same thing with their respective stat.
+     */
+
     public void SetStamina(float dec)
     {
+        Debug.Log(name + " MaxStamina: " + MaxStamina() + " Amount Added: " + dec);
         if (Stamina() + dec > MaxStamina())
+        {
             stamina = maxStamina;
+            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
+        }
         else if (Stamina() + dec <= 0)
+        {
+            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
             stamina = 0;
+        }
         else
+        {
+            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
             stamina = stamina + dec;
+        }
     }
 
     public void SetHealth(float dec)
@@ -162,6 +185,9 @@ public class Entity : MonoBehaviour {
             mana = stamina + dec;
     }
 
+    /*
+     * Below is combat math and management   
+     */   
     void LeaveCombat()
     {
         if (isPlayer)
@@ -225,6 +251,14 @@ public class Entity : MonoBehaviour {
             LeaveCombat();
             e.LeaveCombat();
         }
+    }
+
+    public void SetAttack(Entity e)
+    {
+        resting = false;
+        GetComponent<Movement>().moveToTarget(e.transform, 1.0f, e);
+        SetTarget(e);
+        Attack(e);
     }
 
     public void SetLocation(Room newLoc)

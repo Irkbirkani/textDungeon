@@ -6,6 +6,7 @@ public static class PlayerCommands {
 
 	private static string exitNorth = "north", exitEast = "east", exitSouth = "south", exitWest = "west", attack = "attack", flee = "flee", rest = "rest", inspect = "inspect", target = "target";
     private static string get = "get", drop = "drop", character = "character", inventory = "inventory";
+    private static string step ="step";
 
 	public static string ExitNorth {
 		get { return exitNorth; }
@@ -79,4 +80,11 @@ public static class PlayerCommands {
         get { return inventory; }
         set { inventory = value; }
     }
+
+    public static string Step
+    {
+        get { return step; }
+        set { step = value; }
+    }
+
 }

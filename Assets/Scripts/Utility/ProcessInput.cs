@@ -23,39 +23,46 @@ public class ProcessInput : MonoBehaviour {
 	public void processInput(string input){
 		var moving = player.GetComponent<Movement>().moving;
 		var inp = input.Split (' ');
-        if (inp[0] == PlayerCommands.ExitEast && !moving && !player.attacking)
+        if (inp[0].Equals(PlayerCommands.ExitEast) && !moving && !player.attacking)
             player.Location().Check("", "move", "east");
-        else if (inp[0] == PlayerCommands.ExitNorth && !moving && !player.attacking)
+        else if (inp[0].Equals(PlayerCommands.ExitNorth) && !moving && !player.attacking)
             player.Location().Check("", "move", "north");
-        else if (inp[0] == PlayerCommands.ExitSouth && !moving && !player.attacking)
+        else if (inp[0].Equals(PlayerCommands.ExitSouth) && !moving && !player.attacking)
             player.Location().Check("", "move", "south");
-        else if (inp[0] == PlayerCommands.ExitWest && !moving && !player.attacking)
+        else if (inp[0].Equals(PlayerCommands.ExitWest) && !moving && !player.attacking)
             player.Location().Check("", "move", "west");
-        else if (inp[0] == PlayerCommands.Attack && inp.Length == 2 && !player.attacking)
+        else if (inp[0].Equals(PlayerCommands.Step) && !moving)
+        {
+            if (inp.Length == 3)
+                player.Location().Check(inp[1] + " " + inp[2], "move", "step");
+            else
+                player.Location().Check(inp[1] + " 1", "move", "step");
+        }
+        else if (inp[0].Equals(PlayerCommands.Attack) && inp.Length == 2 && !player.attacking)
             player.Location().Check(inp[1], "ent", "attack");
-        else if (inp[0] == PlayerCommands.Inspect && inp.Length == 2 && !player.attacking && !moving)
+        else if (inp[0].Equals(PlayerCommands.Inspect) && inp.Length == 2 && !player.attacking && !moving)
             player.Location().Check(inp[1], "ent", "inspect");
-        else if (inp[0] == PlayerCommands.Target && inp.Length == 2 && !player.attacking && !moving)
+        else if (inp[0].Equals(PlayerCommands.Target) && inp.Length == 2 && !player.attacking && !moving)
             player.Location().Check(inp[1], "ent", "target");
-        else if (inp[0] == PlayerCommands.Get && inp.Length == 2 && !player.attacking && !moving)
+        else if (inp[0].Equals(PlayerCommands.Get) && inp.Length == 2 && !player.attacking && !moving)
             player.Location().Check(inp[1], "item", "get");
-        else if (inp[0] == PlayerCommands.Drop && inp.Length == 2 && !player.attacking && !moving)
+        else if (inp[0].Equals(PlayerCommands.Drop) && inp.Length == 2 && !player.attacking && !moving)
             player.DropItem(inp[1]);
-        else if (inp[0] == PlayerCommands.Character)
+        else if (inp[0].Equals(PlayerCommands.Character))
         {
             GameObject info = GameObject.Find("InfoPanel").gameObject;
             var child = info.transform.Find("CharacterPanel");
             info.GetComponent<InfoPanel>().Deactivate();
             child.gameObject.SetActive(true);
         }
-        else if (inp[0] == PlayerCommands.Inventory)
+        else if (inp[0].Equals(PlayerCommands.Inventory))
         {
             GameObject info = GameObject.Find("InfoPanel").gameObject;
             var child = info.transform.Find("InventoryPanel");
             info.GetComponent<InfoPanel>().Deactivate();
             child.gameObject.SetActive(true);
         }
-        else if (inp[0] == PlayerCommands.Rest && !moving && !player.attacking)
+        else if (inp[0].Equals(PlayerCommands.Rest) && !moving && !player.attacking)
         {
             player.resting = true;
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
@@ -63,7 +70,7 @@ public class ProcessInput : MonoBehaviour {
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
             chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
         }
-        else if (inp[0] == PlayerCommands.Flee && player.attacking)
+        else if (inp[0].Equals(PlayerCommands.Flee) && player.attacking)
         {
             var arr = new string[] { "north", "south", "east", "west" };
             player.attacking = false;

@@ -10,7 +10,7 @@ public class InitialSetup : MonoBehaviour {
 	public Room startRoom;
     public Canvas canvas;
 
-    private bool testing = true;
+    //private bool testing = true;
 
     void Start()
     {

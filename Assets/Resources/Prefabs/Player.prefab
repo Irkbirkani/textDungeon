@@ -117,11 +117,12 @@ MonoBehaviour:
   Name: You
   location: {fileID: 0}
   atkSpeed: 2
+  regen: 2
+  restRegen: 5
   isPlayer: 1
   attacking: 0
   resting: 0
-  regen: 2
-  restRegen: 5
+  TargetPanel: {fileID: 0}
 --- !u!114 &114508865994159296
 MonoBehaviour:
   m_ObjectHideFlags: 1

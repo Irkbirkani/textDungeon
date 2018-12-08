@@ -65,6 +65,9 @@ public class Room : MonoBehaviour {
                     case "north":
                         Exit(cmd);
                         return;
+                    case "step":
+                        Step(tgt);
+                        return;
                 }
                 return;
         }
@@ -121,9 +124,7 @@ public class Room : MonoBehaviour {
     }
 
 	void Attack(Entity tgt) {
-           Entity pl = GetPlayer();
-           pl.resting = false;
-		   pl.GetComponent<Movement> ().moveToTarget(tgt.transform, 1.0f, tgt);
+        GetPlayer().SetAttack(tgt);
 	}
 
     public void print(string s, string col)
@@ -190,10 +191,17 @@ public class Room : MonoBehaviour {
 				pl.GetComponent<Movement> ().SetMove(true, exits [i].transform, 0.01f);
                 pl.SetStamina(-distance);
 				good = true;
+                break;
 			}
 		}
 		if (!good) {
             print("< "+ Name + ": Can't go that way!", "#00ffffff");
 		}
 	}
+
+    void Step(string dir)
+    {
+        var cmd = dir.Split(' ');
+
+    }
 }
