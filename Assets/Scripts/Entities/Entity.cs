@@ -213,7 +213,7 @@ public class Entity : MonoBehaviour {
                 chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
                 chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>< Enemy hit you for "+ damage +" damage!</color>");
                 chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
-                chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+                chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().verticalNormalizedPosition = 0.0f;
             }
             SetHealth(-damage);
             Attack(e);
@@ -234,7 +234,7 @@ public class Entity : MonoBehaviour {
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
             chat.GetComponent<UpdateChatText>().UpdateChat("<color=#ff0000ff>>" + " Attacking " + target.name + " for " + damage + " damage! " + target.Name + " has " + (target.Health() - damage) + " health left!</color>");
             chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
-            chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+            chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().verticalNormalizedPosition = 0.0f;
         }
         target.TakeDamage(damage, this);
     }

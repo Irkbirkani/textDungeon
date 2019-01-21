@@ -133,7 +133,8 @@ public class Room : MonoBehaviour {
         chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(0, 0, 1);
         chat.GetComponent<UpdateChatText>().UpdateChat("<color="+col+"> " + s + "</color>");
         chat.transform.Find("ScrollView").gameObject.transform.Find("Viewport").gameObject.transform.Find("Content").gameObject.GetComponent<Text>().color = new Color(1, 1, 1);
-        chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().gameObject.transform.Find("Scrollbar Vertical").gameObject.GetComponent<Scrollbar>().value = 0.0f;
+        chat.transform.Find("ScrollView").gameObject.GetComponent<ScrollRect>().verticalNormalizedPosition = 0f;
+
     }
     
     public void AddEntity(Entity ent)

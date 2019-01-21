@@ -1,12 +1,14 @@
 ﻿<Properties StartupConfiguration="{CEF78B38-D905-C6D8-6C4B-354DA36D5338}|">
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Room/Tile.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/Entities/Entity.cs">
     <Files>
-      <File FileName="Assets/Scripts/Entities/Entity.cs" Line="189" Column="43" />
-      <File FileName="Assets/Scripts/Room/Room.cs" Line="205" Column="9" />
+      <File FileName="Assets/Scripts/Entities/Entity.cs" Line="59" Column="16" />
+      <File FileName="Assets/Scripts/Room/Room.cs" Line="136" Column="113" />
       <File FileName="Assets/Scripts/Utility/ProcessInput.cs" Line="39" Column="54" />
       <File FileName="Assets/Scripts/Utility/PlayerCommands.cs" Line="87" Column="19" />
       <File FileName="Assets/Scripts/Room/Tile.cs" Line="32" Column="29" />
-      <File FileName="Assets/Scripts/Utility/UpdateChatText.cs" Line="24" Column="1" />
+      <File FileName="Assets/Scripts/Utility/UpdateChatText.cs" Line="27" Column="52" />
+      <File FileName="Assets/Scripts/Entities/EntityRegen.cs" Line="34" Column="30" />
+      <File FileName="Assets/Scripts/Entities/UpdateCharacterPanel.cs" Line="28" Column="40" />
     </Files>
   </MonoDevelop.Ide.Workbench>
   <MonoDevelop.Ide.DebuggingService.PinnedWatches />

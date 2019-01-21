@@ -10,7 +10,8 @@ public class EntityRegen : MonoBehaviour {
 	 //Use this for initialization
 	void Start () {
        ent = this.gameObject.GetComponent<Entity>();
-       StartCoroutine(Regen());
+        //StartCoroutine(Regen());
+        Invoke("Regen", 0);
 	}
 
     void Update()
@@ -18,8 +19,9 @@ public class EntityRegen : MonoBehaviour {
     }
 
 
-    IEnumerator Regen()
-    { 
+    void Regen()
+    {
+        Debug.Log("Is it running?");
         if (!ent.attacking)
         {
             ent.SetStamina(ent.resting ? ent.restRegen : ent.regen);
@@ -28,8 +30,10 @@ public class EntityRegen : MonoBehaviour {
             if (ent.Stamina() - ent.MaxStamina() <= 0.001 && ent.Health() - ent.MaxHealth() <= 0.001 && ent.Mana() - ent.MaxMana() <= 0.001)
                 ent.resting = false;
         }
-        yield return new WaitForSeconds(delay);
 
-        StartCoroutine(Regen());
+        Invoke("Regen", delay);
+        //yield return new WaitForSeconds(delay);
+
+        //StartCoroutine(Regen());
     }
 }
