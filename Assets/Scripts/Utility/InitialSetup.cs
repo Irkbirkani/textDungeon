@@ -9,6 +9,8 @@ public class InitialSetup : MonoBehaviour {
     public InputField input;
 	public Room startRoom;
     public Canvas canvas;
+    public UpdatePlayerStats playerStatsText;
+    public UpdateRoomStats roomStats;
 
     //private bool testing = true;
 
@@ -16,15 +18,8 @@ public class InitialSetup : MonoBehaviour {
     {
         //Cursor.visible = false;
         //Cursor.lockState = CursorLockMode.Locked;
-        //if(testing)
-        //    LoadLocation("/Resources/Data/LocationData/TestWorld");
-        LoadPlayer();
-        input.Select();
         input.ActivateInputField();
-
-       //startRoom.AddEntity(GameObject.Find("Player").GetComponent<Entity>());
-       //startRoom.gameObject.SetActive(true);
-       //GameObject.Find ("Player").GetComponent<Entity>().SetLocation(startRoom);
+        LoadLocation("/Resources/Data/LocationData/TestWorld");
     }
 
     void LoadLocation(string locationPath)
@@ -148,10 +143,14 @@ public class InitialSetup : MonoBehaviour {
                     canvas.GetComponent<CanvasController>().SetPlayer(player.GetComponent<Entity>());
                     player.transform.parent = room.transform;
                     player.GetComponent<Entity>().location = room.GetComponent<Room>();
-                    player.GetComponent<Entity>().TargetPanel = canvas.transform.Find("TargetStatPanel").GetComponent<UpdatePlayerStats>();
+                    playerStatsText.player = player.GetComponent<Entity>();
+                    roomStats.player = player.GetComponent<Entity>();
+                    player.GetComponent<Entity>().TargetPanel = playerStatsText;
                     player.GetComponent<Entity>().MakeEntity(PlayerNode.SelectSingleNode("stats"), true);
                     room.GetComponent<Room>().AddEntity(player.GetComponent<Entity>());
                     room.SetActive(true);
+                    roomStats.loaded = true;
+                    playerStatsText.loaded = true;
                     break;
             }
         }

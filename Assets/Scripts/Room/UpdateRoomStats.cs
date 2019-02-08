@@ -7,24 +7,20 @@ public class UpdateRoomStats : MonoBehaviour {
 
     public Entity player;
 
-	private Text locationText, nameText, exitsText, npcText, itemText;
+	public Text areaText, locationText, npcText, itemText;
+    public bool loaded = false;
 	private Room room;
-
-	// Use this for initialization
-	void Start () {
-        locationText = transform.Find("RoomAreaText").GetComponent<Text>();
-        nameText     = transform.Find("RoomLocationText").GetComponent<Text>();
-		npcText      = transform.Find ("RoomNPCText").GetComponent<Text> ();
-        itemText     = transform.Find("RoomItemText").GetComponent<Text>();
-    }
 	
 	// Update is called once per frame
 	void Update () {
+        if (loaded)
+        {
 		room = player.location;
-        locationText.text = "Area: " + room.location;
-        nameText.text     = "Location: " + room.Name;
+        areaText.text = "Area: " + room.location;
+        locationText.text     = "Location: " + room.Name;
 		npcText.text      = PrintNPC (room);
         itemText.text     = PrintItems(room);
+        }
 	}
 
 	string PrintExits(Room room) {

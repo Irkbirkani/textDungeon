@@ -147,20 +147,17 @@ public class Entity : MonoBehaviour {
 
     public void SetStamina(float dec)
     {
-        Debug.Log(name + " MaxStamina: " + MaxStamina() + " Amount Added: " + dec);
+
         if (Stamina() + dec > MaxStamina())
         {
             stamina = maxStamina;
-            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
         }
         else if (Stamina() + dec <= 0)
         {
-            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
             stamina = 0;
         }
         else
         {
-            Debug.Log(name + " MaxStamina: " + maxStamina + " Stamina: " + stamina);
             stamina = stamina + dec;
         }
     }

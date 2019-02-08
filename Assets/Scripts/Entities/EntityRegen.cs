@@ -21,7 +21,7 @@ public class EntityRegen : MonoBehaviour {
 
     void Regen()
     {
-        Debug.Log("Is it running?");
+
         if (!ent.attacking)
         {
             ent.SetStamina(ent.resting ? ent.restRegen : ent.regen);
