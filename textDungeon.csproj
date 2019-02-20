@@ -322,7 +322,7 @@
     <Compile Include="Assets\Scripts\Room\ItemType.cs" />
     <Compile Include="Assets\Scripts\Room\NPC.cs" />
     <Compile Include="Assets\Scripts\Room\Room.cs" />
-    <Compile Include="Assets\Scripts\Room\Tile.cs" />
+    <Compile Include="Assets\Scripts\Room\Space.cs" />
     <Compile Include="Assets\Scripts\Room\UpdateRoomStats.cs" />
     <Compile Include="Assets\Scripts\Utility\ActivateChild.cs" />
     <Compile Include="Assets\Scripts\Utility\BarController.cs" />
@@ -341,7 +341,9 @@
     <None Include="Assets\Resources\Data\LocationData\TestWorld\Rooms.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="Assets\Resources\Data\PlayerData\Player.xml" />
+    <None Include="Assets\Resources\Data\PlayerData\Player.xml">
+      <SubType>Designer</SubType>
+    </None>
     <None Include="Assets\Resources\Data\PlayerData\PlayerInventory.txt" />
     <None Include="Assets\Resources\Data\PlayerData\PlayerLocation.txt" />
     <None Include="Assets\Resources\Data\PlayerData\PlayerStats.txt" />

@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Tile : MonoBehaviour {
+public class Space : MonoBehaviour {
 
     public Transform up, down, left, right;
 
